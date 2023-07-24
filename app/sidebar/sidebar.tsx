@@ -20,14 +20,14 @@ const Sidebar = () => {
             src={"/assets/plus.svg"}
             width={18}
             height={18}
-            alt="Plus sign"
+            alt=""
           />New Note</Link>
         <Link href="#">
           <Image
             src={'/assets/sidebar/notes-icon.svg'}
             width={32}
             height={32}
-            alt="Notes icon"
+            alt=""
           />
           Notes</Link>
         <Link href="#">
@@ -35,7 +35,7 @@ const Sidebar = () => {
             src={'/assets/sidebar/help-icon.svg'}
             width={32}
             height={32}
-            alt="Help icon"
+            alt=""
           />
           Help</Link>
       </div>

@@ -9,13 +9,13 @@ describe('Sidebar', () => {
     const headingElement = screen.getByRole('heading', { name: 'NoteDown' })
     expect(headingElement).toBeInTheDocument()
 
-    const newNotesButton = screen.getByRole('button', { name: 'New Note' })
-    expect(newNotesButton).toBeInTheDocument()
+    const newNotesLink = screen.getByRole('link', { name: 'New Note' })
+    expect(newNotesLink).toBeInTheDocument()
 
-    const notesButton = screen.getByRole('button', { name: 'Notes' })
-    expect(notesButton).toBeInTheDocument()
+    const notesLink = screen.getByRole('link', { name: 'Notes' })
+    expect(notesLink).toBeInTheDocument()
 
-    const helpButton = screen.getByRole('button', { name: 'Help' })
-    expect(helpButton).toBeInTheDocument()
+    const helpLink = screen.getByRole('link', { name: 'Help' })
+    expect(helpLink).toBeInTheDocument()
   })
 })
