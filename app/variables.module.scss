@@ -1,3 +1,5 @@
+@use 'sass:math';
+
 /* COLOURS */
 $primary-colour: #dbad81;
 $primary-grey-colour: #413f3d;
@@ -9,3 +11,24 @@ $green-card-colour: #e2ebe0;
 $red-card-colour: #fec8cc;
 $blue-card-colour: #cddaef;
 $purple-card-colour: #ddd3e1;
+
+/* MIXINS */
+// Font properties
+@mixin heading1 {
+  font-weight: 700;
+  font-size: pxToRem(32px);
+}
+
+// Util
+@mixin flexCenter($direction) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: $direction;
+}
+
+/* FUNCTIONS */
+// Converts pixel to rem
+@function pxToRem($pxValue) {
+  @return math.div($pxValue, 16px) * 1rem;
+}

@@ -1,0 +1,8 @@
+.sidebar {
+  background: red;
+  height: 100vh;
+}
+.sidebar .logo {
+  display: flex;
+  align-items: center;
+}

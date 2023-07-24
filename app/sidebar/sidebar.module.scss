@@ -1,0 +1,40 @@
+@import '../variables.module.scss';
+
+.sidebar {
+  height: 100vh;
+
+  .logo {
+    @include flexCenter(row);
+    gap: 4px;
+    padding: 24px 0px 112px 0px;
+
+    h1 {
+      @include heading1;
+    }
+  }
+
+  .btnContainer {
+    @include flexCenter(column);
+    gap: 32px;
+
+    a {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      width: 200px;
+      text-decoration: none;
+      border-radius: 16px;
+      padding: 24px 0px;
+      width: 300px;
+      font-weight: 500;
+    }
+
+    .newNoteBtn {
+      @include flexCenter(row);
+      text-align: center;
+      color: #ffffff;
+      background: $primary-colour;
+      font-weight: 700;
+    }
+  }
+}
