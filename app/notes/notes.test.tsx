@@ -8,14 +8,14 @@ beforeEach(() => {
 })
 
 describe('Notes', () => {
-  it('renders correctly when there are no notes', () => {
+  it.only('renders correctly when there are no notes', () => {
     const headingElement = screen.getByRole('heading', { name: 'My Notes' })
     expect(headingElement).toBeInTheDocument()
 
     const img = screen.getByAltText('No notes')
     expect(img).toBeInTheDocument()
 
-    const textElement = screen.getByText('You haven\'t created any notes... ')
+    const textElement = screen.getByText(`You have not created any notes... `)
     expect(textElement).toBeInTheDocument()
   })
 

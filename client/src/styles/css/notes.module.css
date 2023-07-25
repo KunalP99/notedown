@@ -1,0 +1,34 @@
+/* COLOURS */
+/* MIXINS */
+/* FUNCTIONS */
+.notesContainer h2 {
+  font-weight: 400;
+  font-size: clamp(2rem, 3vw, 2.5rem);
+  padding: 24px;
+}
+.notesContainer .noNotesContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 32px;
+  height: 80vh;
+  width: 100vw;
+  font-weight: 500;
+}
+
+@media (min-width: 800px) {
+  .notesContainer .noNotesContainer {
+    width: 100vw;
+  }
+}
+@media (min-width: 1200px) {
+  .notesContainer .noNotesContainer {
+    width: 70vw;
+  }
+}
+@media (min-width: 1700px) {
+  .notesContainer .noNotesContainer {
+    width: 80vw;
+  }
+}

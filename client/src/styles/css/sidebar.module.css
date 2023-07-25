@@ -3,7 +3,8 @@
 /* FUNCTIONS */
 .sidebar {
   height: 100vh;
-  position: relative;
+  width: 100vw;
+  position: absolute;
   overflow: auto;
   border: none;
   background: white;
@@ -94,7 +95,6 @@
   }
   100% {
     transform: translateX(-100%);
-    visibility: hidden;
   }
 }
 @media (min-width: 800px) {
@@ -113,19 +113,20 @@
     padding: 48px 0px 50px 32px;
   }
 }
+@media (min-width: 900px) {
+  .siderbar {
+    width: 20vw;
+  }
+}
 @media (min-width: 1200px) {
   .sidebar {
+    position: relative;
     width: 30vw;
   }
 }
 @media (min-width: 1700px) {
   .sidebar {
-    width: 25vw;
-  }
-}
-@media (min-width: 1700px) {
-  .sidebar {
-    width: 20vw;
+    width: 30vw;
   }
 }
 @media (max-width: 360px) {
