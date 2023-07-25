@@ -20,11 +20,11 @@ const Sidebar = () => {
 
   const toggleSidebar = () => {
     const sidebar = document.querySelector(`.${styles.sidebar}`)
-    sidebar?.classList.toggle(styles.active)
+    sidebar?.classList.toggle(styles.hide)
   }
 
   return (
-    <div className={styles.sidebar}>
+    <div className={styles.sidebar} role="navigation">
       <button className={styles.arrowBtn} onClick={toggleSidebar}>
         <Image
           className={styles.arrowImg}

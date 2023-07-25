@@ -85,7 +85,7 @@
   gap: 16px;
 }
 
-.sidebar.active {
+.sidebar.hide {
   animation: sidebarAnim 800ms ease-in-out forwards;
   animation-name: sidebarAnim;
   animation-duration: 300ms;
@@ -97,6 +97,6 @@
   }
   100% {
     transform: translateX(-100%);
-    display: none;
+    visibility: hidden;
   }
 }
