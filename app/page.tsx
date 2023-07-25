@@ -1,9 +1,10 @@
 import styles from './page.module.scss'
+import Sidebar from './sidebar/sidebar'
 
 export default function Home() {
   return (
     <main className={styles.main}>
-      <h1>NoteDown</h1>
+      <Sidebar />
     </main>
   )
 }
