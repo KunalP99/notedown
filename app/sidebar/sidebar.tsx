@@ -67,16 +67,16 @@ const Sidebar = () => {
             alt=""
           />
           Help</Link>
-      </div>
-      <div className={styles.userContainer}>
-        <div>
-          <Image
-            src={"/assets/placeholders/profile-placeholder.png"}
-            width={32}
-            height={32}
-            alt="Profile image"
-          />
-          <p>Name</p>
+        <div className={styles.userContainer}>
+          <div>
+            <Image
+              src={"/assets/placeholders/profile-placeholder.png"}
+              width={32}
+              height={32}
+              alt="Profile image"
+            />
+            <p>Name</p>
+          </div>
         </div>
       </div>
     </div>

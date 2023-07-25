@@ -6,15 +6,17 @@
   position: relative;
   overflow: auto;
   border: none;
+  background: white;
+  z-index: 0;
 }
 .sidebar .arrowBtn {
   border: none;
   background: none;
   position: absolute;
   right: 5px;
-  bottom: 10px;
+  top: 18px;
   margin: auto 0;
-  z-index: 1;
+  z-index: 100;
   cursor: pointer;
 }
 .sidebar .arrowBtn img {
@@ -71,11 +73,6 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  margin: 0 auto;
 }
 .sidebar .userContainer > div {
   display: flex;
@@ -98,5 +95,41 @@
   100% {
     transform: translateX(-100%);
     visibility: hidden;
+  }
+}
+@media (min-width: 800px) {
+  .sidebar {
+    width: 50vw;
+  }
+  .sidebar .arrowBtn {
+    top: 40px;
+  }
+  .sidebar .logo {
+    justify-content: flex-start;
+    padding: 48px 0px 50px 32px;
+  }
+  .sidebar .btnContainer {
+    align-items: flex-start;
+    padding: 48px 0px 50px 32px;
+  }
+}
+@media (min-width: 1200px) {
+  .sidebar {
+    width: 30vw;
+  }
+}
+@media (min-width: 1700px) {
+  .sidebar {
+    width: 25vw;
+  }
+}
+@media (min-width: 1700px) {
+  .sidebar {
+    width: 20vw;
+  }
+}
+@media (max-width: 360px) {
+  .sidebar {
+    width: 360px;
   }
 }
