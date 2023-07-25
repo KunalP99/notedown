@@ -17,8 +17,12 @@
 
 @media (min-width: 800px) {
   .notesContainer {
+    h2 {
+      padding: 48px;
+    }
+
     .noNotesContainer {
-      width: 100vw;
+      width: 50vw;
     }
   }
 }
@@ -27,6 +31,12 @@
   .notesContainer {
     .noNotesContainer {
       width: 70vw;
+      gap: 80px;
+
+      img {
+        width: 410px;
+        height: 222px;
+      }
     }
   }
 }

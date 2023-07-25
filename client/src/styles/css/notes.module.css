@@ -18,13 +18,21 @@
 }
 
 @media (min-width: 800px) {
+  .notesContainer h2 {
+    padding: 48px;
+  }
   .notesContainer .noNotesContainer {
-    width: 100vw;
+    width: 50vw;
   }
 }
 @media (min-width: 1200px) {
   .notesContainer .noNotesContainer {
     width: 70vw;
+    gap: 80px;
+  }
+  .notesContainer .noNotesContainer img {
+    width: 410px;
+    height: 222px;
   }
 }
 @media (min-width: 1700px) {
