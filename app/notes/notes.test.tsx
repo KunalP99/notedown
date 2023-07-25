@@ -8,7 +8,7 @@ beforeEach(() => {
 })
 
 describe('Notes', () => {
-  it('renders correctly when there are no notes', () => {
+  it.only('renders correctly when there are no notes', () => {
     const headingElement = screen.getByRole('heading', { name: 'My Notes' })
     expect(headingElement).toBeInTheDocument()
 
