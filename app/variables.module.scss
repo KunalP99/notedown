@@ -20,6 +20,11 @@ $purple-card-colour: #ddd3e1;
   font-size: pxToRem(32px);
 }
 
+@mixin heading2 {
+  font-weight: 400;
+  font-size: clamp(pxToRem(32px), 3vw, pxToRem(40px));
+}
+
 // Util
 @mixin flexCenter($direction) {
   display: flex;

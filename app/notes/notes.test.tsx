@@ -15,7 +15,7 @@ describe('Notes', () => {
     const img = screen.getByAltText('No notes')
     expect(img).toBeInTheDocument()
 
-    const textElement = screen.getByText('You haven\'t created any notes... ')
+    const textElement = screen.getByText(`You have not created any notes...`)
     expect(textElement).toBeInTheDocument()
   })
 

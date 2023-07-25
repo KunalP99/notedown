@@ -1,0 +1,40 @@
+@import '../variables.module.scss';
+
+.notesContainer {
+  h2 {
+    @include heading2;
+    padding: 24px;
+  }
+
+  .noNotesContainer {
+    @include flexCenter(column);
+    gap: 32px;
+    height: 80vh;
+    width: 100vw;
+    font-weight: 500;
+  }
+}
+
+@media (min-width: 800px) {
+  .notesContainer {
+    .noNotesContainer {
+      width: 100vw;
+    }
+  }
+}
+
+@media (min-width: 1200px) {
+  .notesContainer {
+    .noNotesContainer {
+      width: 70vw;
+    }
+  }
+}
+
+@media (min-width: 1700px) {
+  .notesContainer {
+    .noNotesContainer {
+      width: 80vw;
+    }
+  }
+}
