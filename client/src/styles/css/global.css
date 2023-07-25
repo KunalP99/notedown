@@ -4,3 +4,6 @@
 body {
   background: #fff8f1;
 }
+body .container {
+  display: flex;
+}
