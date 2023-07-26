@@ -16,6 +16,54 @@
   width: 100vw;
   font-weight: 500;
 }
+.notesContainer .mainNotesContainer .filterContainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 72px 24px 0px 24px;
+}
+.notesContainer .mainNotesContainer .filterContainer > div {
+  display: flex;
+  gap: 56px;
+}
+.notesContainer .mainNotesContainer .filterContainer > div .recentContainer,
+.notesContainer .mainNotesContainer .filterContainer > div .favContainer {
+  position: relative;
+}
+.notesContainer .mainNotesContainer .filterContainer > div .recentContainer > div,
+.notesContainer .mainNotesContainer .filterContainer > div .favContainer > div {
+  position: absolute;
+  bottom: -18px;
+}
+.notesContainer .mainNotesContainer .filterContainer > div button {
+  cursor: pointer;
+  font-size: 1.375rem;
+  border: none;
+  background: none;
+}
+.notesContainer .mainNotesContainer .filterContainer .underline {
+  margin: 0 auto;
+  background-color: rgba(0, 0, 0, 0.13);
+  height: 2px;
+  width: 100%;
+}
+.notesContainer .mainNotesContainer .filterContainer .activeUnderline {
+  position: absolute;
+  bottom: 0;
+  height: 4px;
+  width: 100px;
+  background: #413f3d;
+  border-radius: 16px;
+  transition: 300ms ease-in-out;
+}
+.notesContainer .mainNotesContainer .filterContainer .moveRight {
+  transform: translateX(147px);
+  width: 120px;
+}
+.notesContainer .mainNotesContainer .filterContainer .moveLeft {
+  transform: translateX(-3px);
+}
 
 @media (min-width: 800px) {
   .notesContainer h2 {
@@ -34,9 +82,13 @@
     width: 410px;
     height: 222px;
   }
+  .notesContainer .mainNotesContainer {
+    width: 70vw;
+  }
 }
 @media (min-width: 1700px) {
-  .notesContainer .noNotesContainer {
+  .notesContainer .noNotesContainer,
+  .notesContainer .mainNotesContainer {
     width: 80vw;
   }
 }

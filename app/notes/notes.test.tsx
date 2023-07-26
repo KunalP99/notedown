@@ -1,14 +1,16 @@
 import { screen, render } from '@testing-library/react'
 import '@testing-library/jest-dom'
 import Notes from './page'
+import INotes from '../models/notes/INotes'
 // import userEvent from '@testing-library/user-event'
 
-beforeEach(() => {
-  render(<Notes />)
-})
-
 describe('Notes', () => {
-  it.only('renders correctly when there are no notes', () => {
+  const emptyNotes: INotes[] = []
+  const oneNote: INotes[] = [{ title: 'Note 1', text: 'This is the first note' }]
+
+  it('renders correctly when there are no notes', () => {
+    render(<Notes notes={emptyNotes} />)
+
     const headingElement = screen.getByRole('heading', { name: 'My Notes' })
     expect(headingElement).toBeInTheDocument()
 
@@ -20,6 +22,7 @@ describe('Notes', () => {
   })
 
   it('renders correctly when there are notes', () => {
+    render(<Notes notes={oneNote} />)
     const headingElement = screen.getByRole('heading', { name: 'My Notes' })
     expect(headingElement).toBeInTheDocument()
 
@@ -29,7 +32,7 @@ describe('Notes', () => {
     const favouritesBtn = screen.getByRole('button', { name: 'Favourites' })
     expect(favouritesBtn).toBeInTheDocument()
 
-    const searchBar = screen.getByRole('input', { name: 'search-notes' })
+    const searchBar = screen.getByPlaceholderText('Search...')
     expect(searchBar).toBeInTheDocument()
   })
 })

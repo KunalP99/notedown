@@ -13,6 +13,62 @@
     width: 100vw;
     font-weight: 500;
   }
+
+  .mainNotesContainer {
+    .filterContainer {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin: 72px 24px 0px 24px;
+
+      > div {
+        display: flex;
+        gap: 56px;
+
+        .recentContainer,
+        .favContainer {
+          position: relative;
+
+          > div {
+            position: absolute;
+            bottom: -18px;
+          }
+        }
+
+        button {
+          cursor: pointer;
+          font-size: pxToRem(22px);
+          border: none;
+          background: none;
+        }
+      }
+
+      .underline {
+        margin: 0 auto;
+        background-color: rgba(0, 0, 0, 0.13);
+        height: 2px;
+        width: 100%;
+      }
+
+      .activeUnderline {
+        position: absolute;
+        bottom: 0;
+        height: 4px;
+        width: 100px;
+        background: $primary-grey-colour;
+        border-radius: 16px;
+        transition: 300ms ease-in-out;
+      }
+      .moveRight {
+        transform: translateX(147px);
+        width: 120px;
+      }
+      .moveLeft {
+        transform: translateX(-3px);
+      }
+    }
+  }
 }
 
 @media (min-width: 800px) {
@@ -23,6 +79,12 @@
 
     .noNotesContainer {
       width: 50vw;
+    }
+
+    .mainNotesContainer {
+      .filterContainer {
+        margin-left: 48px;
+      }
     }
   }
 }
@@ -38,12 +100,17 @@
         height: 222px;
       }
     }
+
+    .mainNotesContainer {
+      width: 70vw;
+    }
   }
 }
 
 @media (min-width: 1700px) {
   .notesContainer {
-    .noNotesContainer {
+    .noNotesContainer,
+    .mainNotesContainer {
       width: 80vw;
     }
   }

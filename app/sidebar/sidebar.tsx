@@ -9,6 +9,7 @@ const Sidebar = () => {
   const hideSidebar = () => {
     const sidebar = document.querySelector<HTMLElement>(`.${styles.sidebar}`)
     const noNotesContainer = document.querySelector<HTMLElement>(`.${notesStyles.noNotesContainer}`)
+    const mainNotesContainer = document.querySelector<HTMLElement>(`.${notesStyles.mainNotesContainer}`)
 
     if (sidebar) {
       sidebar.classList.toggle(styles.hide)
@@ -19,6 +20,10 @@ const Sidebar = () => {
 
         if (noNotesContainer) {
           noNotesContainer.style.width = '100vw'
+        }
+
+        if (mainNotesContainer) {
+          mainNotesContainer.style.width = '100vw'
         }
       }, 300)
     }
