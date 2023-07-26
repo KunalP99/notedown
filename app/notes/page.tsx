@@ -2,14 +2,16 @@
 
 import Image from 'next/image'
 import styles from './notes.module.scss'
-import { MouseEvent } from 'react';
-import INotes from '../models/notes/INotes';
+import { MouseEvent } from 'react'
+// import INotes from '../models/notes/INotes'
 
-interface Props {
-  notes: INotes[]
-}
+// interface Props {
+//   notes: INotes[]
+// }
 
-const Notes = ({ notes }: Props) => {
+const Notes = () => {
+  const notes = ['1']
+
   // Change active state between recents filter and favourites filter
   const toggleFilter = (e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) => {
     const activeUnderline = document.querySelector<HTMLElement>(`.${styles.activeUnderline}`)
@@ -55,7 +57,9 @@ const Notes = ({ notes }: Props) => {
             </div>
             <div className={styles.underline}></div>
           </div>
-          <input type="text" name="search-notes" placeholder="Search..." />
+          <div className={styles.searchBoxContainer}>
+            <input className={styles.searchBox} type="text" name="search-notes" placeholder="Search..." />
+          </div>
         </div>
       }
     </section >

@@ -68,6 +68,22 @@
         transform: translateX(-3px);
       }
     }
+
+    .searchBoxContainer {
+      width: 100vw;
+      display: flex;
+      justify-content: center;
+      margin-top: 60px;
+      .searchBox {
+        background: url('/assets/search.svg') no-repeat;
+        background-color: #ffffff;
+        background-position: 37px 46%;
+        border: none;
+        border-radius: 16px;
+        padding: 16px 0px 16px 70px;
+        font-size: pxToRem(20px);
+      }
+    }
   }
 }
 
@@ -82,7 +98,15 @@
     }
 
     .mainNotesContainer {
+      width: 50vw;
+
       .filterContainer {
+        margin-left: 48px;
+      }
+
+      .searchBoxContainer {
+        justify-content: flex-start;
+        width: 100%;
         margin-left: 48px;
       }
     }
@@ -103,6 +127,12 @@
 
     .mainNotesContainer {
       width: 70vw;
+
+      .searchBoxContainer {
+        .searchBox {
+          width: 400px;
+        }
+      }
     }
   }
 }

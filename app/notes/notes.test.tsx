@@ -1,15 +1,15 @@
 import { screen, render } from '@testing-library/react'
 import '@testing-library/jest-dom'
 import Notes from './page'
-import INotes from '../models/notes/INotes'
+// import INotes from '../models/notes/INotes'
 // import userEvent from '@testing-library/user-event'
 
 describe('Notes', () => {
-  const emptyNotes: INotes[] = []
-  const oneNote: INotes[] = [{ title: 'Note 1', text: 'This is the first note' }]
+  // const emptyNotes: INotes[] = []
+  // const oneNote: INotes[] = [{ title: 'Note 1', text: 'This is the first note' }]
 
   it('renders correctly when there are no notes', () => {
-    render(<Notes notes={emptyNotes} />)
+    render(<Notes />)
 
     const headingElement = screen.getByRole('heading', { name: 'My Notes' })
     expect(headingElement).toBeInTheDocument()
@@ -22,7 +22,7 @@ describe('Notes', () => {
   })
 
   it('renders correctly when there are notes', () => {
-    render(<Notes notes={oneNote} />)
+    render(<Notes />)
     const headingElement = screen.getByRole('heading', { name: 'My Notes' })
     expect(headingElement).toBeInTheDocument()
 
