@@ -10,7 +10,6 @@
 .notesContainer {
   h2 {
     @include heading2;
-    padding: 24px;
   }
 
   .mainNotesContainer,
@@ -101,10 +100,6 @@
 
 @media (min-width: 800px) {
   .notesContainer {
-    h2 {
-      padding: 48px;
-    }
-
     .mainNotesContainer {
       .filterContainer {
         margin-left: 48px;

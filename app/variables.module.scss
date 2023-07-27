@@ -23,6 +23,11 @@ $purple-card-colour: #ddd3e1;
 @mixin heading2 {
   font-weight: 400;
   font-size: clamp(pxToRem(32px), 3vw, pxToRem(40px));
+  padding: 24px;
+
+  @media (min-width: 800px) {
+    padding: 48px;
+  }
 }
 
 // Button
