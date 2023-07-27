@@ -1,4 +1,11 @@
-@import '../variables.module.scss';
+@import "../variables.module.scss";
+
+.arrowOpenBtn {
+  display: none;
+  @include arrowBtn;
+  transform: rotate(180deg);
+  bottom: 50px;
+}
 
 .notesContainer {
   h2 {
@@ -75,7 +82,7 @@
       justify-content: center;
       margin-top: 60px;
       .searchBox {
-        background: url('/assets/search.svg') no-repeat;
+        background: url("/assets/search.svg") no-repeat;
         background-color: #ffffff;
         background-position: 37px 46%;
         border: none;
@@ -107,7 +114,7 @@
       .searchBoxContainer {
         justify-content: flex-start;
         width: 100%;
-        margin-left: 48px;
+        padding-left: 48px;
       }
     }
   }
