@@ -1,4 +1,4 @@
-@import '../variables.module.scss';
+@import "../variables.module.scss";
 
 .sidebar {
   height: 100vh;
@@ -99,7 +99,7 @@
 @media (min-width: 800px) {
   .sidebar {
     position: relative;
-    width: 50vw;
+    width: 45vw;
 
     .arrowBtn {
       top: 40px;
@@ -117,7 +117,7 @@
   }
 }
 
-@media (min-width: 900px) {
+@media (min-width: 1000px) {
   .siderbar {
     width: 20vw;
   }

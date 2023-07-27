@@ -1,12 +1,7 @@
 /* COLOURS */
 /* MIXINS */
 /* FUNCTIONS */
-.notesContainer h2 {
-  font-weight: 400;
-  font-size: clamp(2rem, 3vw, 2.5rem);
-  padding: 24px;
-}
-.notesContainer .arrowOpenBtn {
+.arrowOpenBtn {
   display: none;
   border: none;
   background: none;
@@ -16,8 +11,42 @@
   transform: rotate(180deg);
   bottom: 50px;
 }
-.notesContainer .arrowOpenBtn img {
+.arrowOpenBtn img {
   transform: scale(1.5);
+}
+
+.notesContainer h2 {
+  font-weight: 400;
+  font-size: clamp(2rem, 3vw, 2.5rem);
+  padding: 24px;
+}
+.notesContainer .mainNotesContainer,
+.notesContainer .noNotesContainer {
+  width: 100vw;
+}
+@media (min-width: 800px) {
+  .notesContainer .mainNotesContainer,
+  .notesContainer .noNotesContainer {
+    width: 50vw;
+  }
+}
+@media (min-width: 1000px) {
+  .notesContainer .mainNotesContainer,
+  .notesContainer .noNotesContainer {
+    width: 60vw;
+  }
+}
+@media (min-width: 1200px) {
+  .notesContainer .mainNotesContainer,
+  .notesContainer .noNotesContainer {
+    width: 70vw;
+  }
+}
+@media (min-width: 1700px) {
+  .notesContainer .mainNotesContainer,
+  .notesContainer .noNotesContainer {
+    width: 80vw;
+  }
 }
 .notesContainer .noNotesContainer {
   display: flex;
@@ -26,7 +55,6 @@
   flex-direction: column;
   gap: 32px;
   height: 80vh;
-  width: 100vw;
   font-weight: 500;
 }
 .notesContainer .mainNotesContainer .filterContainer {
@@ -97,12 +125,6 @@
   .notesContainer h2 {
     padding: 48px;
   }
-  .notesContainer .noNotesContainer {
-    width: 50vw;
-  }
-  .notesContainer .mainNotesContainer {
-    width: 50vw;
-  }
   .notesContainer .mainNotesContainer .filterContainer {
     margin-left: 48px;
   }
@@ -114,23 +136,13 @@
 }
 @media (min-width: 1200px) {
   .notesContainer .noNotesContainer {
-    width: 70vw;
     gap: 80px;
   }
   .notesContainer .noNotesContainer img {
     width: 410px;
     height: 222px;
   }
-  .notesContainer .mainNotesContainer {
-    width: 70vw;
-  }
   .notesContainer .mainNotesContainer .searchBoxContainer .searchBox {
     width: 400px;
-  }
-}
-@media (min-width: 1700px) {
-  .notesContainer .noNotesContainer,
-  .notesContainer .mainNotesContainer {
-    width: 80vw;
   }
 }

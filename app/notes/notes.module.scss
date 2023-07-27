@@ -13,11 +13,15 @@
     padding: 24px;
   }
 
+  .mainNotesContainer,
+  .noNotesContainer {
+    @include mainContainer;
+  }
+
   .noNotesContainer {
     @include flexCenter(column);
     gap: 32px;
     height: 80vh;
-    width: 100vw;
     font-weight: 500;
   }
 
@@ -81,6 +85,7 @@
       display: flex;
       justify-content: center;
       margin-top: 60px;
+
       .searchBox {
         background: url("/assets/search.svg") no-repeat;
         background-color: #ffffff;
@@ -100,13 +105,7 @@
       padding: 48px;
     }
 
-    .noNotesContainer {
-      width: 50vw;
-    }
-
     .mainNotesContainer {
-      width: 50vw;
-
       .filterContainer {
         margin-left: 48px;
       }
@@ -123,7 +122,6 @@
 @media (min-width: 1200px) {
   .notesContainer {
     .noNotesContainer {
-      width: 70vw;
       gap: 80px;
 
       img {
@@ -133,22 +131,11 @@
     }
 
     .mainNotesContainer {
-      width: 70vw;
-
       .searchBoxContainer {
         .searchBox {
           width: 400px;
         }
       }
-    }
-  }
-}
-
-@media (min-width: 1700px) {
-  .notesContainer {
-    .noNotesContainer,
-    .mainNotesContainer {
-      width: 80vw;
     }
   }
 }

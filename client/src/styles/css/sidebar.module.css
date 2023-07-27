@@ -109,7 +109,7 @@
 @media (min-width: 800px) {
   .sidebar {
     position: relative;
-    width: 50vw;
+    width: 45vw;
   }
   .sidebar .arrowBtn {
     top: 40px;
@@ -123,7 +123,7 @@
     padding: 48px 0px 50px 32px;
   }
 }
-@media (min-width: 900px) {
+@media (min-width: 1000px) {
   .siderbar {
     width: 20vw;
   }

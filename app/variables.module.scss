@@ -1,4 +1,4 @@
-@use 'sass:math';
+@use "sass:math";
 
 /* COLOURS */
 $primary-colour: #dbad81;
@@ -35,6 +35,23 @@ $purple-card-colour: #ddd3e1;
 
   img {
     transform: scale(1.5);
+  }
+}
+
+// Containers
+@mixin mainContainer {
+  width: 100vw;
+  @media (min-width: 800px) {
+    width: 55vw;
+  }
+  @media (min-width: 1000px) {
+    width: 60vw;
+  }
+  @media (min-width: 1200px) {
+    width: 70vw;
+  }
+  @media (min-width: 1700px) {
+    width: 80vw;
   }
 }
 

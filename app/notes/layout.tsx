@@ -9,7 +9,7 @@ import openSidebar from "../utils/openSidebar"
 import Sidebar from "../sidebar/sidebar"
 
 const NotesLayout = ({ children }: { children: ReactNode }) => {
-  const [windowWidth, setWindowWidth] = useState<number>(window.innerWidth);
+  const [windowWidth, setWindowWidth] = useState<number>(0);
 
   // Get the size of the window when the window changes size
   useEffect(() => {
@@ -24,19 +24,26 @@ const NotesLayout = ({ children }: { children: ReactNode }) => {
     }
   })
 
+  // Get initial window width and set it 
+  useEffect(() => {
+    setWindowWidth(window.innerWidth)
+  }, [])
+
   // Change width of containers based on the width of the window
   useEffect(() => {
     const mainNotesContainer = document.querySelector<HTMLElement>(`.${styles.mainNotesContainer}`)
     const noNotesContainer = document.querySelector<HTMLElement>(`.${styles.noNotesContainer}`)
 
     if (mainNotesContainer) {
-      if (windowWidth >= 800 && windowWidth < 1200) mainNotesContainer.style.width = '50vw'
+      if (windowWidth >= 800 && windowWidth < 1000) mainNotesContainer.style.width = '55vw'
+      if (windowWidth >= 1000 && windowWidth < 1200) mainNotesContainer.style.width = '60vw'
       if (windowWidth >= 1200 && windowWidth < 1700) mainNotesContainer.style.width = '70vw'
       if (windowWidth >= 1700) mainNotesContainer.style.width = '80vw'
     }
 
     if (noNotesContainer) {
-      if (windowWidth >= 800 && windowWidth < 1200) noNotesContainer.style.width = '50vw'
+      if (windowWidth >= 800 && windowWidth < 1000) noNotesContainer.style.width = '55vw'
+      if (windowWidth >= 1000 && windowWidth < 1200) noNotesContainer.style.width = '60vw'
       if (windowWidth >= 1200 && windowWidth < 1700) noNotesContainer.style.width = '70vw'
       if (windowWidth >= 1700) noNotesContainer.style.width = '80vw'
     }
