@@ -10,9 +10,11 @@ const Sidebar = () => {
     const sidebar = document.querySelector<HTMLElement>(`.${styles.sidebar}`)
     const noNotesContainer = document.querySelector<HTMLElement>(`.${notesStyles.noNotesContainer}`)
     const mainNotesContainer = document.querySelector<HTMLElement>(`.${notesStyles.mainNotesContainer}`)
+    const arrowOpenBtn = document.querySelector<HTMLElement>(`.${notesStyles.arrowOpenBtn}`)
 
     if (sidebar) {
-      sidebar.classList.toggle(styles.hide)
+      sidebar.classList.add(styles.hide)
+      sidebar.classList.remove(styles.open)
 
       // After 300ms, hide element from DOM so content shifts to fit width of screen
       setTimeout(() => {
@@ -24,6 +26,10 @@ const Sidebar = () => {
 
         if (mainNotesContainer) {
           mainNotesContainer.style.width = '100vw'
+        }
+
+        if (arrowOpenBtn) {
+          arrowOpenBtn.style.display = 'block'
         }
       }, 300)
     }
