@@ -10,18 +10,11 @@
   z-index: 1;
 
   .arrowBtn {
-    border: none;
-    background: none;
-    position: absolute;
+    @include arrowBtn;
     right: 5px;
     top: 18px;
-    margin: auto 0;
-    cursor: pointer;
-
-    img {
-      transform: scale(1.5);
-    }
   }
+
   .logo {
     @include flexCenter(row);
     gap: 4px;
@@ -75,19 +68,31 @@
     }
   }
 }
-.sidebar.hide {
-  animation: sidebarAnim 800ms ease-in-out forwards;
-  animation-name: sidebarAnim;
-  animation-duration: 300ms;
+.hide {
+  animation: sidebarAnimClose 300ms ease-in-out forwards;
 }
 
-@keyframes sidebarAnim {
+.open {
+  animation: sidebarAnimOpen 300ms ease-in-out forwards;
+}
+
+@keyframes sidebarAnimClose {
   0% {
     transform: translateX(0);
   }
 
   100% {
     transform: translateX(-100%);
+  }
+}
+
+@keyframes sidebarAnimOpen {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(0);
   }
 }
 
