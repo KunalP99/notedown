@@ -2,39 +2,30 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
+import { useState, useEffect } from 'react'
 import styles from './sidebar.module.scss'
-import notesStyles from '../notes/notes.module.scss'
+import hideSidebar from '../utils/hideSidebar'
 
 const Sidebar = () => {
-  const hideSidebar = () => {
-    const sidebar = document.querySelector<HTMLElement>(`.${styles.sidebar}`)
-    const noNotesContainer = document.querySelector<HTMLElement>(`.${notesStyles.noNotesContainer}`)
-    const mainNotesContainer = document.querySelector<HTMLElement>(`.${notesStyles.mainNotesContainer}`)
-    const arrowOpenBtn = document.querySelector<HTMLElement>(`.${notesStyles.arrowOpenBtn}`)
+  const [windowWidth, setWindowWidth] = useState<number>(0);
 
-    if (sidebar) {
-      sidebar.classList.add(styles.hide)
-      sidebar.classList.remove(styles.open)
+  // Get the size of the window when the window changes size
+  useEffect(() => {
+    const handleWindowResize = () => {
+      setWindowWidth(window.innerWidth)
+    };
 
-      // After 300ms, hide element from DOM so content shifts to fit width of screen
-      setTimeout(() => {
-        sidebar.style.display = 'none'
+    window.addEventListener('resize', handleWindowResize)
 
-        if (noNotesContainer) {
-          noNotesContainer.style.width = '100vw'
-        }
-
-        if (mainNotesContainer) {
-          mainNotesContainer.style.width = '100vw'
-        }
-
-        if (arrowOpenBtn) {
-          arrowOpenBtn.style.display = 'block'
-        }
-      }, 300)
+    return () => {
+      window.removeEventListener('resize', handleWindowResize)
     }
-  }
+  })
 
+  // Get initial window width and set it 
+  useEffect(() => {
+    setWindowWidth(window.innerWidth)
+  }, [])
   return (
     <div className={styles.sidebar} role="navigation">
       <button className={styles.arrowBtn} onClick={hideSidebar}>
@@ -56,14 +47,22 @@ const Sidebar = () => {
         <h1>NoteDown</h1>
       </div>
       <div className={styles.btnContainer}>
-        <Link href='/notes/create' className={styles.newNoteBtn}>
+        <Link href='/notes/create' className={styles.newNoteBtn} onClick={() => {
+          if (windowWidth < 800) {
+            hideSidebar()
+          }
+        }}>
           <Image
             src={"/assets/plus.svg"}
             width={18}
             height={18}
             alt=""
           />New Note</Link>
-        <Link href="#">
+        <Link href="/notes" onClick={() => {
+          if (windowWidth < 800) {
+            hideSidebar()
+          }
+        }}>
           <Image
             src={"/assets/sidebar/notes-icon.svg"}
             width={32}
@@ -71,7 +70,11 @@ const Sidebar = () => {
             alt=""
           />
           Notes</Link>
-        <Link href="#">
+        <Link href="#" onClick={() => {
+          if (windowWidth < 800) {
+            hideSidebar()
+          }
+        }}>
           <Image
             src={"/assets/sidebar/help-icon.svg"}
             width={32}
