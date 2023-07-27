@@ -56,7 +56,7 @@ const Sidebar = () => {
         <h1>NoteDown</h1>
       </div>
       <div className={styles.btnContainer}>
-        <Link href='#' className={styles.newNoteBtn}>
+        <Link href='/notes' className={styles.newNoteBtn}>
           <Image
             src={"/assets/plus.svg"}
             width={18}
