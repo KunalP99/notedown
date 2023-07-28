@@ -14,10 +14,10 @@ describe('Create Note', () => {
     const headingElement = screen.getByRole('heading', { name: /create note/i })
     expect(headingElement).toBeInTheDocument()
 
-    const titleInput = screen.getByRole('textbox', { name: /title/i })
+    const titleInput = screen.getByPlaceholderText(/title/i)
     expect(titleInput).toBeInTheDocument()
 
-    const noteInput = screen.getByRole('textbox', { name: /note/i })
+    const noteInput = screen.getByPlaceholderText(/start writing your note here!/i)
     expect(noteInput).toBeInTheDocument()
 
     const submitBtn = screen.getByRole('button', { name: /create/i })

@@ -1,0 +1,26 @@
+/* COLOURS */
+/* MIXINS */
+/* FUNCTIONS */
+.createContainer .createForm {
+  width: 100vw;
+}
+@media (min-width: 800px) {
+  .createContainer .createForm {
+    width: 50vw;
+  }
+}
+@media (min-width: 1000px) {
+  .createContainer .createForm {
+    width: 60vw;
+  }
+}
+@media (min-width: 1200px) {
+  .createContainer .createForm {
+    width: 70vw;
+  }
+}
+@media (min-width: 1700px) {
+  .createContainer .createForm {
+    width: 80vw;
+  }
+}

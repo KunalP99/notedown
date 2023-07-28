@@ -1,0 +1,12 @@
+@import "../../variables.module.scss";
+
+.createContainer {
+  h2 {
+    @include heading2;
+  }
+  .createForm {
+    @include mainContainer;
+    display: flex;
+    flex-direction: column;
+  }
+}
