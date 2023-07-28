@@ -30,6 +30,12 @@ $purple-card-colour: #ddd3e1;
   }
 }
 
+@mixin noteFont {
+  font-weight: 400;
+  font-family: "Inter", sans-serif;
+  font-size: pxToRem(16px);
+}
+
 // Button
 @mixin arrowBtn {
   border: none;
@@ -41,6 +47,14 @@ $purple-card-colour: #ddd3e1;
   img {
     transform: scale(1.5);
   }
+}
+
+@mixin primaryButton {
+  background: $primary-colour;
+  color: #ffffff;
+  border: none;
+  border-radius: 16px;
+  font-size: pxToRem(16px);
 }
 
 // Containers
@@ -58,6 +72,10 @@ $purple-card-colour: #ddd3e1;
   @media (min-width: 1700px) {
     width: 80vw;
   }
+}
+
+// Form
+@mixin inputBox {
 }
 
 // Util
