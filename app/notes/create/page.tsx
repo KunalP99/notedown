@@ -1,20 +1,34 @@
 "use client"
 
-import { useState } from 'react'
+import { FormEvent, useState } from 'react'
 import styles from './create.module.scss'
 
 const CreateNote = () => {
   const [title, setTitle] = useState<string>('')
   const [note, setNote] = useState<string>('')
   const [tag, setTag] = useState<string>('')
-  
+
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+  }
+
   return (
     <section className={styles.createContainer}>
       <h2>Create Note</h2>
-      <form className={styles.createForm}>
+      <form className={styles.createForm} onSubmit={(e) => handleSubmit(e)}>
         <div className={styles.topHalf}>
-          <input type="text" name='title' placeholder='Title' required />
-          <select name="tag" id="tag">
+          <input
+            type="text"
+            name='title'
+            placeholder='Title'
+            value={title}
+            required
+            onChange={((e) => setTitle(e.target.value))} />
+          <select
+            name="tag"
+            id="tag"
+            value={tag}
+            onChange={(e) => setTag(e.target.value)} >
             <option value="none">None</option>
             <option value="#e2ebe0">Green</option>
             <option value="#ffeccb">Yellow</option>
@@ -23,7 +37,12 @@ const CreateNote = () => {
             <option value="#ddd3e1">Purple</option>
           </select>
         </div>
-        <textarea name="note" cols={20} rows={10} placeholder='Start writing your note here!'></textarea>
+        <textarea
+          name="note"
+          placeholder='Start writing your note here!'
+          value={note}
+          onChange={((e) => setNote(e.target.value))}>
+        </textarea>
         <button>Create</button>
       </form>
     </section>
