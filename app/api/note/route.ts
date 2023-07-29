@@ -45,17 +45,28 @@ export async function POST(req: NextRequest) {
   const body = await req.json()
   const {
     user_id,
+    note_id,
     title,
     note,
     tag,
-  }: { user_id: string; title: string; note: string; tag: string } = body
+    favourite,
+  }: {
+    user_id: string
+    note_id: string
+    title: string
+    note: string
+    tag: string
+    favourite: boolean
+  } = body
 
   try {
     const newNote = new NoteModel({
       user_id,
+      note_id,
       title,
       note,
       tag,
+      favourite,
     })
     const createdNote = await newNote.save()
     NextResponse.json({ createdNote }, { status: 200 })

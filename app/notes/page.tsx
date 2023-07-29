@@ -7,9 +7,11 @@ import NotesContainer from '../components/notes/NotesContainer'
 
 export interface INote {
   user_id: string,
+  note_id: string,
   title: string,
   note: string,
-  tag: string
+  tag: string,
+  favourite: boolean
 }
 
 const Notes = () => {
