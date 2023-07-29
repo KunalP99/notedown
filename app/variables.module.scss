@@ -1,4 +1,4 @@
-@use "sass:math";
+@use 'sass:math';
 
 /* COLOURS */
 $primary-colour: #dbad81;
@@ -32,16 +32,15 @@ $purple-card-colour: #ddd3e1;
 
 @mixin noteFont {
   font-weight: 400;
-  font-family: "Inter", sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: pxToRem(16px);
 }
 
 // Button
-@mixin arrowBtn {
+@mixin arrowBtn($position) {
   border: none;
   background: none;
-  position: absolute;
-  margin: auto 0;
+  position: $position;
   cursor: pointer;
 
   img {

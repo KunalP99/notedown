@@ -3,14 +3,14 @@
 .sidebar {
   height: 100vh;
   width: 100vw;
-  position: absolute;
+  position: fixed;
   overflow: auto;
   border: none;
   background: white;
   z-index: 1;
 
   .arrowBtn {
-    @include arrowBtn;
+    @include arrowBtn(absolute);
     right: 5px;
     top: 18px;
   }
@@ -98,7 +98,8 @@
 
 @media (min-width: 800px) {
   .sidebar {
-    position: relative;
+    position: sticky;
+    top: 0;
     width: 45vw;
 
     .arrowBtn {

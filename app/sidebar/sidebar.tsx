@@ -20,12 +20,13 @@ const Sidebar = () => {
     return () => {
       window.removeEventListener('resize', handleWindowResize)
     }
-  })
+  }, [windowWidth])
 
   // Get initial window width and set it 
   useEffect(() => {
     setWindowWidth(window.innerWidth)
   }, [])
+
   return (
     <div className={styles.sidebar} role="navigation">
       <button className={styles.arrowBtn} onClick={hideSidebar}>

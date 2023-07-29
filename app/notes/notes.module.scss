@@ -1,10 +1,15 @@
-@import "../variables.module.scss";
+@import '../variables.module.scss';
 
 .arrowOpenBtn {
+  @include arrowBtn(fixed);
   display: none;
-  @include arrowBtn;
   transform: rotate(180deg);
   bottom: 50px;
+  cursor: pointer;
+
+  img {
+    transform: scale(1.5);
+  }
 }
 
 .notesContainer {
@@ -25,6 +30,22 @@
   }
 
   .mainNotesContainer {
+    .gridContainer {
+      display: grid;
+      gap: 24px;
+      padding: 0px 24px;
+      margin-top: 48px;
+
+      .noteCardContainer {
+        border-radius: 16px;
+        padding: 32px 16px;
+
+        > div {
+          text-align: center;
+        }
+      }
+    }
+
     .filterContainer {
       position: relative;
       display: flex;
@@ -86,7 +107,7 @@
       margin-top: 60px;
 
       .searchBox {
-        background: url("/assets/search.svg") no-repeat;
+        background: url('/assets/search.svg') no-repeat;
         background-color: #ffffff;
         background-position: 37px 46%;
         border: none;
