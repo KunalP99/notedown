@@ -1,38 +1,32 @@
 import { screen, render } from '@testing-library/react'
 import '@testing-library/jest-dom'
-import Notes from './page'
-// import INotes from '../models/notes/INotes'
-// import userEvent from '@testing-library/user-event'
+import NotesContainer from '../components/notes/NotesContainer'
+import { INote } from './page'
 
 describe('Notes', () => {
-  // const emptyNotes: INotes[] = []
-  // const oneNote: INotes[] = [{ title: 'Note 1', text: 'This is the first note' }]
+  const emptyNotes: INote[] = []
+  const oneNote: INote[] = [{ user_id: 'user_1', title: 'Note 1', note: 'This is the first note', tag: '#cddaef' }]
 
   it('renders correctly when there are no notes', () => {
-    render(<Notes />)
+    render(<NotesContainer notes={emptyNotes} err='' />)
 
-    const headingElement = screen.getByRole('heading', { name: 'My Notes' })
-    expect(headingElement).toBeInTheDocument()
-
-    const img = screen.getByAltText('No notes')
+    const img = screen.getByAltText(/no notes/i)
     expect(img).toBeInTheDocument()
 
-    const textElement = screen.getByText(`You have not created any notes...`)
+    const textElement = screen.getByText(/you have not created any notes.../i)
     expect(textElement).toBeInTheDocument()
   })
 
   it('renders correctly when there are notes', () => {
-    render(<Notes />)
-    const headingElement = screen.getByRole('heading', { name: 'My Notes' })
-    expect(headingElement).toBeInTheDocument()
+    render(<NotesContainer notes={oneNote} err='' />)
 
-    const recentsBtn = screen.getByRole('button', { name: 'Recents' })
+    const recentsBtn = screen.getByRole('button', { name: /recents/i })
     expect(recentsBtn).toBeInTheDocument()
 
-    const favouritesBtn = screen.getByRole('button', { name: 'Favourites' })
+    const favouritesBtn = screen.getByRole('button', { name: /favourites/i })
     expect(favouritesBtn).toBeInTheDocument()
 
-    const searchBar = screen.getByPlaceholderText('Search...')
+    const searchBar = screen.getByPlaceholderText(/search.../i)
     expect(searchBar).toBeInTheDocument()
   })
 })
