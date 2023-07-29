@@ -9,7 +9,6 @@ export const getNotes = async () => {
 
 export const createNote = (
   user_id: string,
-  note_id: string,
   title: string,
   note: string,
   tag: string,
@@ -19,7 +18,6 @@ export const createNote = (
     method: 'POST',
     body: JSON.stringify({
       user_id,
-      note_id,
       title,
       note,
       tag,

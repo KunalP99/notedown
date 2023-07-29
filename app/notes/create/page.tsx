@@ -6,7 +6,7 @@ import CreateNoteForm from '@/app/components/forms/CreateNoteForm'
 
 const CreateNote = () => {
   const onSubmit = (title: string, note: string, tag: string) => {
-    createNote('1', title, note, tag)
+    createNote('1', title, note, tag, false)
   }
 
   return (

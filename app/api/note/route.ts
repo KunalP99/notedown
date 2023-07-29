@@ -45,14 +45,12 @@ export async function POST(req: NextRequest) {
   const body = await req.json()
   const {
     user_id,
-    note_id,
     title,
     note,
     tag,
     favourite,
   }: {
     user_id: string
-    note_id: string
     title: string
     note: string
     tag: string
@@ -62,7 +60,6 @@ export async function POST(req: NextRequest) {
   try {
     const newNote = new NoteModel({
       user_id,
-      note_id,
       title,
       note,
       tag,
