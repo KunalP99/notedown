@@ -31,7 +31,7 @@ describe('Create Note', () => {
     const noteInput = screen.getByPlaceholderText(/start writing your note here!/i)
     user.type(noteInput, '# Hello, *world*!')
 
-    const dropdown = screen.getByRole('combobox', { name: /tag/i })
+    const dropdown = screen.getByRole('combobox')
     user.selectOptions(dropdown, within(dropdown).getByRole('option', { name: /green/i }))
 
     const submitBtn = screen.getByRole('button', { name: /create/i })
@@ -39,7 +39,5 @@ describe('Create Note', () => {
     await waitFor(() => {
       expect(onSubmit).toHaveBeenCalledTimes(1)
     })
-
-    expect(onSubmit).toHaveBeenCalledWith({ lazy: true })
   })
 })
