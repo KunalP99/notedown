@@ -3,6 +3,30 @@ import dbConnect from '@/mongoose/dbConnect'
 import mongoose from 'mongoose'
 import NoteModel from '@/mongoose/models/Note'
 
+export async function GET() {
+  // Check if application is already connect to database, if not, then connect to the database
+  if (!mongoose.connection.readyState) {
+    try {
+      await dbConnect()
+      console.log('Connected to database')
+    } catch (err) {
+      NextResponse.json(
+        { error: 'Error connecting to databases' },
+        { status: 500 }
+      )
+      console.log('Error connecting to database')
+    }
+  }
+
+  try {
+    const notes = await NoteModel.find()
+    NextResponse.json({ notes }, { status: 200 })
+    return new Response(JSON.stringify({ notes }))
+  } catch (err) {
+    NextResponse.json({ error: 'Error getting note' }, { status: 500 })
+  }
+}
+
 export async function POST(req: NextRequest) {
   // Check if application is already connect to database, if not, then connect to the database
   if (!mongoose.connection.readyState) {

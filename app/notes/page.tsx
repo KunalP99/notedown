@@ -2,15 +2,24 @@
 
 import Image from 'next/image'
 import styles from './notes.module.scss'
-import { MouseEvent } from 'react'
-// import INotes from '../models/notes/INotes'
+import { useState, useEffect, MouseEvent } from 'react'
+import { getNotes } from '../utils/api/mongoApi'
 
-// interface Props {
-//   notes: INotes[]
-// }
+interface INote {
+  title: string,
+  note: string,
+  tag: string
+}
 
 const Notes = () => {
-  const notes = ['1']
+  const [notes, setNotes] = useState<INote[]>()
+  const [err, setErr] =useState<string>('')
+
+  useEffect(() => {
+    getNotes()
+      .then(data => setNotes(data.notes))
+      .catch(err => setErr(err))
+  }, [])
 
   // Change active state between recents filter and favourites filter
   const toggleFilter = (e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) => {
@@ -33,7 +42,7 @@ const Notes = () => {
     <section className={styles.notesContainer}>
       <h2>My Notes</h2>
       {/* Seperate no notes container into new file */}
-      {notes.length <= 0 ?
+      {notes && notes.length <= 0 ?
         <div className={styles.noNotesContainer}>
           <Image
             src={"/assets/empty-notes-img.svg"}

@@ -2,6 +2,7 @@
 
 import { FormEvent, useState } from 'react'
 import styles from './create.module.scss'
+import { createNote } from '@/app/utils/api/mongoApi'
 
 const CreateNote = () => {
   const [title, setTitle] = useState<string>('')
@@ -10,6 +11,11 @@ const CreateNote = () => {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    createNote('1', title, note, tag)
+
+    setTitle('')
+    setNote('')
+    setTag('')
   }
 
   return (
