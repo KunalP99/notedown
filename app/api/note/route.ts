@@ -4,6 +4,7 @@ import mongoose from 'mongoose'
 import NoteModel from '@/mongoose/models/Note'
 
 export async function POST(req: NextRequest) {
+  // Check if application is already connect to database, if not, then connect to the database
   if (!mongoose.connection.readyState) {
     try {
       await dbConnect()
