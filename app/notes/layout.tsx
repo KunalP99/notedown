@@ -12,17 +12,18 @@ import Sidebar from "../sidebar/sidebar"
 
 const NotesLayout = ({ children }: { children: ReactNode }) => {
   const [windowWidth, setWindowWidth] = useState<number>(0);
-  const sidebar = document.querySelector<HTMLElement>(`.${sidebarStyles.sidebar}`)
 
   // Get the size of the window when the window changes size
   useEffect(() => {
+    const sidebar = document.querySelector<HTMLElement>(`.${sidebarStyles.sidebar}`)
+
     const handleWindowResize = () => {
       setWindowWidth(window.innerWidth)
     };
 
     // Only add resize event if sidebar is open, else we just want main containers to have 100vw
     if (sidebar) {
-      if (sidebar.classList.contains(sidebarStyles.open)) {
+      if (!sidebar.classList.contains(sidebarStyles.open)) {
         window.addEventListener('resize', handleWindowResize)
 
         return () => {
@@ -30,7 +31,7 @@ const NotesLayout = ({ children }: { children: ReactNode }) => {
         }
       }
     }
-  })
+  }, [])
 
   // Get initial window width and set it 
   useEffect(() => {
