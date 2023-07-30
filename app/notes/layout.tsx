@@ -43,27 +43,33 @@ const NotesLayout = ({ children }: { children: ReactNode }) => {
     const mainNotesContainer = document.querySelector<HTMLElement>(`.${notesStyles.mainNotesContainer}`)
     const noNotesContainer = document.querySelector<HTMLElement>(`.${notesStyles.noNotesContainer}`)
     const createNoteForm = document.querySelector<HTMLElement>(`.${createStyles.createForm}`)
+    const sidebar = document.querySelector<HTMLElement>(`.${sidebarStyles.sidebar}`)
 
-    if (mainNotesContainer) {
-      if (windowWidth >= 800 && windowWidth < 1000) mainNotesContainer.style.width = '55vw'
-      if (windowWidth >= 1000 && windowWidth < 1200) mainNotesContainer.style.width = '60vw'
-      if (windowWidth >= 1200 && windowWidth < 1700) mainNotesContainer.style.width = '70vw'
-      if (windowWidth >= 1700) mainNotesContainer.style.width = '80vw'
+    if (sidebar) {
+      if (sidebar.classList.contains(`${sidebarStyles.open}`)) {
+        if (mainNotesContainer) {
+          if (windowWidth >= 800 && windowWidth < 1000) mainNotesContainer.style.width = '55vw'
+          if (windowWidth >= 1000 && windowWidth < 1200) mainNotesContainer.style.width = '60vw'
+          if (windowWidth >= 1200 && windowWidth < 1700) mainNotesContainer.style.width = '70vw'
+          if (windowWidth >= 1700) mainNotesContainer.style.width = '80vw'
+        }
+
+        if (noNotesContainer) {
+          if (windowWidth >= 800 && windowWidth < 1000) noNotesContainer.style.width = '55vw'
+          if (windowWidth >= 1000 && windowWidth < 1200) noNotesContainer.style.width = '60vw'
+          if (windowWidth >= 1200 && windowWidth < 1700) noNotesContainer.style.width = '70vw'
+          if (windowWidth >= 1700) noNotesContainer.style.width = '80vw'
+        }
+
+        if (createNoteForm) {
+          if (windowWidth >= 800 && windowWidth < 1000) createNoteForm.style.width = '55vw'
+          if (windowWidth >= 1000 && windowWidth < 1200) createNoteForm.style.width = '60vw'
+          if (windowWidth >= 1200 && windowWidth < 1700) createNoteForm.style.width = '70vw'
+          if (windowWidth >= 1700) createNoteForm.style.width = '80vw'
+        }
+      }
     }
 
-    if (noNotesContainer) {
-      if (windowWidth >= 800 && windowWidth < 1000) noNotesContainer.style.width = '55vw'
-      if (windowWidth >= 1000 && windowWidth < 1200) noNotesContainer.style.width = '60vw'
-      if (windowWidth >= 1200 && windowWidth < 1700) noNotesContainer.style.width = '70vw'
-      if (windowWidth >= 1700) noNotesContainer.style.width = '80vw'
-    }
-
-    if (createNoteForm) {
-      if (windowWidth >= 800 && windowWidth < 1000) createNoteForm.style.width = '55vw'
-      if (windowWidth >= 1000 && windowWidth < 1200) createNoteForm.style.width = '60vw'
-      if (windowWidth >= 1200 && windowWidth < 1700) createNoteForm.style.width = '70vw'
-      if (windowWidth >= 1700) createNoteForm.style.width = '80vw'
-    }
   }, [windowWidth])
 
   return (
