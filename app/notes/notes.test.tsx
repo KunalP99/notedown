@@ -5,7 +5,19 @@ import { INote } from './page'
 
 describe('Notes', () => {
   const emptyNotes: INote[] = []
-  const oneNote: INote[] = [{ user_id: 'user_1', title: 'Note 1', note: 'This is the first note', tag: '#cddaef' }]
+  const oneNote: INote[] =
+    [
+      {
+        _id: '1234',
+        user_id: 'user_1',
+        title: 'Note 1',
+        note: 'This is the first note',
+        tag: '#cddaef',
+        favourite: false,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      }
+    ]
 
   it('renders correctly when there are no notes', () => {
     render(<NotesContainer notes={emptyNotes} err='' />)
