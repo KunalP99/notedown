@@ -24,6 +24,7 @@ describe('Create Note', () => {
 
   it('submits form if all fields pass validation', async () => {
     user.setup()
+
     const titleInput = screen.getByPlaceholderText(/title/i)
     await user.type(titleInput, 'Note Title')
 
@@ -41,6 +42,7 @@ describe('Create Note', () => {
 
   it('submits form if only title is filled out', async () => {
     user.setup()
+
     const titleInput = screen.getByPlaceholderText(/title/i)
     await user.type(titleInput, 'Note Title')
 
@@ -51,7 +53,6 @@ describe('Create Note', () => {
 
   it('does not submit form if title is not filled', async () => {
     user.setup()
-    const submitBtn = screen.getByRole('button', { name: /create/i })
 
     const noteInput = screen.getByPlaceholderText(/start writing your note here!/i)
     await user.type(noteInput, '# Hello, *world*!')
@@ -59,6 +60,7 @@ describe('Create Note', () => {
     const dropdown = screen.getByRole('combobox')
     await user.selectOptions(dropdown, within(dropdown).getByRole('option', { name: /green/i }))
 
+    const submitBtn = screen.getByRole('button', { name: /create/i })
     await user.click(submitBtn)
     expect(onSubmit).not.toHaveBeenCalled()
   })

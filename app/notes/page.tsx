@@ -4,10 +4,9 @@ import styles from './notes.module.scss'
 import { useState, useEffect } from 'react'
 import { getNotes } from '../utils/api/mongoApi'
 import NotesContainer from '../components/notes/NotesContainer'
-import { ObjectId } from 'mongodb'
 
 export interface INote {
-  _id: ObjectId
+  _id: string
   user_id: string,
   title: string,
   note: string,

@@ -6,6 +6,7 @@
   transform: rotate(180deg);
   bottom: 50px;
   cursor: pointer;
+  z-index: 100;
 
   img {
     transform: scale(1.5);
@@ -13,6 +14,7 @@
 }
 
 .notesContainer {
+  overflow: hidden;
   h2 {
     @include heading2;
   }
@@ -30,18 +32,49 @@
   }
 
   .mainNotesContainer {
+    padding-bottom: 24px;
+    
     .gridContainer {
       display: grid;
-      gap: 24px;
-      padding: 0px 24px;
-      margin-top: 48px;
+      gap: 16px;
+      margin-top: 60px;
+      padding: 0px 48px;
 
       .noteCardContainer {
+        position: relative;
         border-radius: 16px;
-        padding: 32px 16px;
+        padding: 50px;
+        text-align: center;
 
-        > div {
-          text-align: center;
+        h3 {
+          @include heading3;
+          display: -webkit-box;
+          -webkit-line-clamp: 1;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          padding: 2px 30px;
+          margin-bottom: 16px;
+        }
+
+        .star {
+          position: absolute;
+          background: none;
+          border: none;
+          top: 5px;
+          right: 5px;
+        }
+
+        .lastEdited {
+          font-size: pxToRem(15px);
+        }
+
+        .moreBtn {
+          background: none;
+          border: none;
+          position: absolute;
+          bottom: 0;
+          right: 5px;
         }
       }
     }
@@ -101,7 +134,6 @@
     }
 
     .searchBoxContainer {
-      width: 100vw;
       display: flex;
       justify-content: center;
       margin-top: 60px;
@@ -122,8 +154,10 @@
 @media (min-width: 800px) {
   .notesContainer {
     .mainNotesContainer {
+      padding-bottom: 48px;
+
       .filterContainer {
-        margin-left: 48px;
+        margin: 0px 48px;
       }
 
       .searchBoxContainer {
@@ -147,9 +181,27 @@
     }
 
     .mainNotesContainer {
+      .gridContainer {
+        grid-template-columns: 1fr 1fr;
+      }
       .searchBoxContainer {
         .searchBox {
           width: 400px;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 1700px) {
+  .notesContainer {
+    .mainNotesContainer {
+      .gridContainer {
+        gap: 50px;
+        grid-template-columns: 1fr 1fr 1fr;
+
+        .noteCardContainer {
+          padding: 70px;
         }
       }
     }

@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import { MouseEvent } from 'react'
 import styles from '@/app/notes/notes.module.scss'
+import NoteCard from './NoteCard'
 import { INote } from '@/app/notes/page'
 
 interface Props {
@@ -55,7 +56,17 @@ const NotesContainer = ({ notes, err }: Props) => {
           <div className={styles.searchBoxContainer}>
             <input className={styles.searchBox} type="text" name="search-notes" placeholder="Search..." />
           </div>
-          {notes.map(note => <p key={note.title}>{note.title}</p>)}
+          <div className={styles.gridContainer}>
+            {notes.map(note =>
+              <NoteCard
+                key={`${note._id.toString()}`}
+                _id={note._id.toString()}
+                title={note.title}
+                tag={note.tag}
+                favourite={note.favourite}
+                updatedAt={note.updatedAt}
+              />)}
+          </div>
         </div>
       }
     </>
