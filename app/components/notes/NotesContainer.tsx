@@ -1,32 +1,44 @@
+"use client"
+
 import Image from 'next/image'
-import { MouseEvent } from 'react'
+import { Dispatch, MouseEvent, SetStateAction, useEffect, useState } from 'react'
 import styles from '@/app/notes/notes.module.scss'
 import NoteCard from './NoteCard'
 import { INote } from '@/app/notes/page'
 
 interface Props {
   notes: INote[],
+  onFav: boolean,
+  setOnFav: Dispatch<SetStateAction<boolean>>
   err: string
 }
 
-// Change active state between recents filter and favourites filter
-const toggleFilter = (e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) => {
-  const activeUnderline = document.querySelector<HTMLElement>(`.${styles.activeUnderline}`)
+const NotesContainer = ({ notes, onFav, setOnFav, err }: Props) => {
+  const [favNotes, setFavNotes] = useState<INote[]>()
 
-  if (activeUnderline) {
-    if (e.currentTarget.innerText === 'Recents') {
-      // TODO: Add state for recent becoming active
-      activeUnderline.classList.add(styles.moveLeft)
-      activeUnderline.classList.remove(styles.moveRight)
-    } else if (e.currentTarget.innerText === 'Favourites') {
-      // TODO: Add state for favourites becoming active
-      activeUnderline.classList.add(styles.moveRight)
-      activeUnderline.classList.remove(styles.moveLeft)
+  // Filter notes everytime notes array is changed to update UI straight aways
+  useEffect(() => {
+    const filteredNotes = notes.filter(note => note.favourite)
+    setFavNotes(filteredNotes)
+  }, [notes])
+
+  // Change active state between recents filter and favourites filter
+  const toggleFilter = (e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) => {
+    const activeUnderline = document.querySelector<HTMLElement>(`.${styles.activeUnderline}`)
+
+    if (activeUnderline) {
+      if (e.currentTarget.innerText === 'Recents') {
+        setOnFav(false)
+        activeUnderline.classList.add(styles.moveLeft)
+        activeUnderline.classList.remove(styles.moveRight)
+      } else if (e.currentTarget.innerText === 'Favourites') {
+        setOnFav(true)
+        activeUnderline.classList.add(styles.moveRight)
+        activeUnderline.classList.remove(styles.moveLeft)
+      }
     }
   }
-}
 
-const NotesContainer = ({ notes, err }: Props) => {
   return (
     <>
       {notes && notes.length <= 0 ?
@@ -57,15 +69,31 @@ const NotesContainer = ({ notes, err }: Props) => {
             <input className={styles.searchBox} type="text" name="search-notes" placeholder="Search..." />
           </div>
           <div className={styles.gridContainer}>
-            {notes.map(note =>
-              <NoteCard
-                key={`${note._id.toString()}`}
-                _id={note._id.toString()}
-                title={note.title}
-                tag={note.tag}
-                favourite={note.favourite}
-                updatedAt={note.updatedAt}
-              />)}
+            {onFav ?
+              <>
+                {favNotes?.map(note =>
+                  <NoteCard
+                    key={`${note._id.toString()}`}
+                    _id={note._id.toString()}
+                    title={note.title}
+                    tag={note.tag}
+                    favourite={note.favourite}
+                    updatedAt={note.updatedAt}
+                  />)}
+              </>
+              :
+              <>
+                {notes.map(note =>
+                  <NoteCard
+                    key={`${note._id.toString()}`}
+                    _id={note._id.toString()}
+                    title={note.title}
+                    tag={note.tag}
+                    favourite={note.favourite}
+                    updatedAt={note.updatedAt}
+                  />)}
+              </>
+            }
           </div>
         </div>
       }

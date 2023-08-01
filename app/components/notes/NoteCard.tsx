@@ -9,7 +9,7 @@ interface Props {
   title: string,
   tag: string,
   favourite: boolean,
-  updatedAt: Date
+  updatedAt: Date,
 }
 
 const NoteCard = ({ _id, title, tag, favourite, updatedAt }: Props) => {

@@ -18,19 +18,20 @@ export interface INote {
 
 const Notes = () => {
   const [notes, setNotes] = useState<INote[]>([])
+  const [onFav, setOnFav] = useState<boolean>(false)
   const [err, setErr] = useState<string>('')
 
   useEffect(() => {
     getNotes()
       .then(data => setNotes(data.notes))
       .catch(err => setErr(err))
-  }, [])
+  }, [onFav])
 
 
   return (
     <section className={styles.notesContainer}>
       <h2>My Notes</h2>
-      <NotesContainer notes={notes} err={err} />
+      <NotesContainer notes={notes} onFav={onFav} setOnFav={setOnFav} err={err} />
     </section >
   )
 }
