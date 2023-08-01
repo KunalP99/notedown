@@ -30,3 +30,18 @@ export const createNote = (
     return res.json()
   })
 }
+
+export const updateFavourite = (_id: string, favourite: boolean) => {
+  return fetch(`/api/note/${_id}`, {
+    method: 'PATCH',
+    body: JSON.stringify({
+      _id,
+      favourite,
+    }),
+  }).then((res) => {
+    if (!res.ok) {
+      throw new Error(`${res.status}: Error creating note`)
+    }
+    return res.json()
+  })
+}

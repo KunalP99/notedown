@@ -1,6 +1,8 @@
 import styles from '@/app/notes/notes.module.scss'
 import Image from 'next/image'
 import { format } from 'date-fns'
+import { useState } from 'react'
+import { updateFavourite } from '@/app/utils/api/mongoApi'
 
 interface Props {
   _id: string,
@@ -11,10 +13,17 @@ interface Props {
 }
 
 const NoteCard = ({ _id, title, tag, favourite, updatedAt }: Props) => {
+  const [fav, setFav] = useState(favourite)
+
+  const handleFavourite = () => {
+    setFav(!fav)
+    updateFavourite(_id, !fav)
+  }
+
   return (
     <div className={styles.noteCardContainer} style={tag ? { background: `${tag}` } : { background: "#ffffff" }}>
-      {favourite ?
-        <button className={styles.star}>
+      {fav ?
+        <button className={styles.star} onClick={handleFavourite}>
           <Image
             src={"/assets/filled-star.svg"}
             width={32}
@@ -23,7 +32,7 @@ const NoteCard = ({ _id, title, tag, favourite, updatedAt }: Props) => {
           />
         </button>
         :
-        <button className={styles.star}>
+        <button className={styles.star} onClick={handleFavourite}>
           <Image
             src={"/assets/unfilled-star.svg"}
             width={32}
