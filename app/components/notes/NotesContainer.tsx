@@ -15,6 +15,8 @@ interface Props {
 
 const NotesContainer = ({ notes, onFav, setOnFav, err }: Props) => {
   const [favNotes, setFavNotes] = useState<INote[]>()
+  const [searchQuery, setSearchQuery] = useState<string>('')
+  console.log(searchQuery)
 
   // Filter notes everytime notes array is changed to update UI straight aways
   useEffect(() => {
@@ -37,6 +39,11 @@ const NotesContainer = ({ notes, onFav, setOnFav, err }: Props) => {
         activeUnderline.classList.remove(styles.moveLeft)
       }
     }
+  }
+
+  // Gets search query from user to search for notes 
+  const handleSearch = (note: INote) => {
+    return searchQuery.toLowerCase() === '' ? note : note.title.toLowerCase().includes(searchQuery)
   }
 
   return (
@@ -66,37 +73,50 @@ const NotesContainer = ({ notes, onFav, setOnFav, err }: Props) => {
             <div className={styles.underline}></div>
           </div>
           <div className={styles.searchBoxContainer}>
-            <input className={styles.searchBox} type="text" name="search-notes" placeholder="Search..." />
+            <input
+              className={styles.searchBox}
+              type="text"
+              name="search-notes"
+              placeholder="Search..."
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
           </div>
           <div className={styles.gridContainer}>
             {onFav ?
               <>
-                {favNotes?.map(note =>
-                  <NoteCard
-                    key={`${note._id.toString()}`}
-                    _id={note._id.toString()}
-                    title={note.title}
-                    tag={note.tag}
-                    favourite={note.favourite}
-                    updatedAt={note.updatedAt}
-                  />)}
+                {favNotes?.filter(note => {
+                  return handleSearch(note)
+                })
+                  .map(note =>
+                    <NoteCard
+                      key={`${note._id.toString()}`}
+                      _id={note._id.toString()}
+                      title={note.title}
+                      tag={note.tag}
+                      favourite={note.favourite}
+                      updatedAt={note.updatedAt}
+                    />)}
               </>
               :
               <>
-                {notes.map(note =>
-                  <NoteCard
-                    key={`${note._id.toString()}`}
-                    _id={note._id.toString()}
-                    title={note.title}
-                    tag={note.tag}
-                    favourite={note.favourite}
-                    updatedAt={note.updatedAt}
-                  />)}
+                {notes.filter(note => {
+                  return handleSearch(note)
+                })
+                  .map(note =>
+                    <NoteCard
+                      key={`${note._id.toString()}`}
+                      _id={note._id.toString()}
+                      title={note.title}
+                      tag={note.tag}
+                      favourite={note.favourite}
+                      updatedAt={note.updatedAt}
+                    />)}
               </>
             }
           </div>
         </div>
       }
+      {err && <p>There is an error!</p>}
     </>
   )
 }
