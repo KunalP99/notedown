@@ -33,7 +33,7 @@
 
   .mainNotesContainer {
     padding-bottom: 24px;
-    
+
     .gridContainer {
       display: grid;
       gap: 16px;
@@ -75,6 +75,42 @@
           position: absolute;
           bottom: 0;
           right: 5px;
+        }
+
+        .dropdownContainer {
+          position: absolute;
+          right: 13px;
+          bottom: -75px;
+          display: flex;
+          flex-direction: column;
+          border-radius: 8px;
+          gap: 10px;
+          background: $secondary-grey-colour;
+          padding: 6px;
+          z-index: 2;
+
+          .btnContainer {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            z-index: 4;
+
+            button {
+              color: white;
+              border: none;
+              background: none;
+            }
+          }
+
+          .dropdownBg {
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+            left: 50%;
+            top: 0;
+            transform: translate(-50%, 0);
+            z-index: 0;
+          }
         }
       }
     }

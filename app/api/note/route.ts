@@ -76,3 +76,34 @@ export async function POST(req: NextRequest) {
 
   return new Response(JSON.stringify({ body }))
 }
+
+export async function DELETE(req: NextRequest) {
+  // Check if application is already connect to database, if not, then connect to the database
+  if (!mongoose.connection.readyState) {
+    try {
+      await dbConnect()
+      console.log('Connected to database')
+    } catch (err) {
+      NextResponse.json(
+        { error: 'Error connecting to databases' },
+        { status: 200 }
+      )
+      console.log('Error connecting to database')
+    }
+  }
+
+  const body = await req.json()
+  const { _id }: { _id: string } = body
+
+  try {
+    const noteToDelete = await NoteModel.findOneAndDelete({ _id })
+    NextResponse.json({ noteToDelete }, { status: 200 })
+  } catch (err) {
+    NextResponse.json(
+      { message: 'Error: note could not be deleted ' },
+      { status: 500 }
+    )
+  }
+
+  return new Response(JSON.stringify({ body }))
+}

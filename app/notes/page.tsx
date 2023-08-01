@@ -31,7 +31,12 @@ const Notes = () => {
   return (
     <section className={styles.notesContainer}>
       <h2>My Notes</h2>
-      <NotesContainer notes={notes} onFav={onFav} setOnFav={setOnFav} err={err} />
+      <NotesContainer
+        notes={notes}
+        setNotes={setNotes}
+        onFav={onFav}
+        setOnFav={setOnFav}
+        err={err} />
     </section >
   )
 }

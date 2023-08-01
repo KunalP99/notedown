@@ -8,15 +8,15 @@ import { INote } from '@/app/notes/page'
 
 interface Props {
   notes: INote[],
+  setNotes: Dispatch<SetStateAction<INote[]>>,
   onFav: boolean,
   setOnFav: Dispatch<SetStateAction<boolean>>
   err: string
 }
 
-const NotesContainer = ({ notes, onFav, setOnFav, err }: Props) => {
+const NotesContainer = ({ notes, setNotes, onFav, setOnFav, err }: Props) => {
   const [favNotes, setFavNotes] = useState<INote[]>()
   const [searchQuery, setSearchQuery] = useState<string>('')
-  console.log(searchQuery)
 
   // Filter notes everytime notes array is changed to update UI straight aways
   useEffect(() => {
@@ -95,6 +95,8 @@ const NotesContainer = ({ notes, onFav, setOnFav, err }: Props) => {
                       tag={note.tag}
                       favourite={note.favourite}
                       updatedAt={note.updatedAt}
+                      notes={notes}
+                      setNotes={setNotes}
                     />)}
               </>
               :
@@ -110,6 +112,8 @@ const NotesContainer = ({ notes, onFav, setOnFav, err }: Props) => {
                       tag={note.tag}
                       favourite={note.favourite}
                       updatedAt={note.updatedAt}
+                      notes={notes}
+                      setNotes={setNotes}
                     />)}
               </>
             }
