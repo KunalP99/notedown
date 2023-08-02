@@ -52,9 +52,10 @@ describe('Notes', () => {
     },
   ]
   const setOnFav = jest.fn()
+  const setNotes = jest.fn()
 
   it('renders correctly when there are no notes', () => {
-    render(<NotesContainer notes={emptyNotes} onFav={false} setOnFav={setOnFav} err='' />)
+    render(<NotesContainer notes={emptyNotes} setNotes={setNotes} onFav={false} setOnFav={setOnFav} err='' />)
 
     const img = screen.getByAltText(/no notes/i)
     expect(img).toBeInTheDocument()
@@ -64,7 +65,7 @@ describe('Notes', () => {
   })
 
   it('renders correctly when there are notes', () => {
-    render(<NotesContainer notes={oneNote} onFav={false} setOnFav={setOnFav} err='' />)
+    render(<NotesContainer notes={oneNote} setNotes={setNotes} onFav={false} setOnFav={setOnFav} err='' />)
 
     const recentsBtn = screen.getByRole('button', { name: /recents/i })
     expect(recentsBtn).toBeInTheDocument()
@@ -79,7 +80,7 @@ describe('Notes', () => {
   it('shows only favourited notes when on favourites tab', async () => {
     user.setup()
 
-    render(<NotesContainer notes={multipleNotes} onFav={true} setOnFav={(setOnFav)} err='' />)
+    render(<NotesContainer notes={multipleNotes} setNotes={setNotes} onFav={true} setOnFav={(setOnFav)} err='' />)
     const firstNote = screen.queryByRole('heading', { name: /note 1/i })
     expect(firstNote).not.toBeInTheDocument()
 

@@ -1,7 +1,7 @@
 import { screen, render } from '@testing-library/react'
 import '@testing-library/jest-dom'
 import userEvent from '@testing-library/user-event'
-import Sidebar from './sidebar'
+import Sidebar from './Sidebar'
 
 beforeEach(() => {
   render(<Sidebar />)
