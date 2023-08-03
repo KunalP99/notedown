@@ -1,0 +1,257 @@
+@import '../variables.module.scss';
+
+.arrowOpenBtn {
+  @include arrowBtn(fixed);
+  display: none;
+  transform: rotate(180deg);
+  bottom: 50px;
+  cursor: pointer;
+  z-index: 100;
+
+  img {
+    transform: scale(1.5);
+  }
+}
+
+.notesContainer {
+  overflow: hidden;
+  h2 {
+    @include heading2;
+  }
+
+  .mainNotesContainer,
+  .noNotesContainer {
+    @include mainContainer;
+  }
+
+  .noNotesContainer {
+    @include flexCenter(column);
+    gap: 32px;
+    height: 80vh;
+    font-weight: 500;
+  }
+
+  .mainNotesContainer {
+    padding-bottom: 24px;
+
+    .gridContainer {
+      display: grid;
+      gap: 16px;
+      margin-top: 60px;
+      padding: 0px 24px;
+
+      .noteCardContainer {
+        position: relative;
+        border-radius: 16px;
+        padding: 50px;
+        text-align: center;
+        cursor: pointer;
+        color: $primary-grey-colour;
+
+        h3 {
+          @include heading3;
+          display: -webkit-box;
+          -webkit-line-clamp: 1;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          padding: 2px 30px;
+          margin-bottom: 16px;
+        }
+
+        .star {
+          position: absolute;
+          background: none;
+          border: none;
+          top: 5px;
+          right: 5px;
+        }
+
+        .lastEdited {
+          font-size: pxToRem(15px);
+        }
+
+        .moreBtn {
+          background: none;
+          border: none;
+          position: absolute;
+          bottom: 0;
+          right: 5px;
+        }
+
+        .dropdownContainer {
+          position: absolute;
+          right: 13px;
+          bottom: -75px;
+          display: flex;
+          flex-direction: column;
+          border-radius: 8px;
+          gap: 10px;
+          background: $secondary-grey-colour;
+          padding: 6px;
+          z-index: 2;
+
+          .linkContainer {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            z-index: 4;
+            color: white;
+            text-decoration: none;
+            font-size: pxToRem(14px);
+          }
+
+          .dropdownBg {
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+            left: 50%;
+            top: 0;
+            transform: translate(-50%, 0);
+            z-index: 0;
+          }
+        }
+
+        .clickableArea {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 80%;
+          height: 100%;
+        }
+      }
+    }
+
+    .filterContainer {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin: 72px 24px 0px 24px;
+
+      > div {
+        display: flex;
+        gap: 56px;
+
+        .recentContainer,
+        .favContainer {
+          position: relative;
+
+          > div {
+            position: absolute;
+            bottom: -18px;
+          }
+        }
+
+        button {
+          cursor: pointer;
+          font-size: pxToRem(22px);
+          border: none;
+          background: none;
+        }
+      }
+
+      .underline {
+        margin: 0 auto;
+        background-color: rgba(0, 0, 0, 0.13);
+        height: 2px;
+        width: 100%;
+      }
+
+      .activeUnderline {
+        position: absolute;
+        bottom: 0;
+        height: 4px;
+        width: 100px;
+        background: $primary-grey-colour;
+        border-radius: 16px;
+        transition: 300ms ease-in-out;
+      }
+      .moveRight {
+        transform: translateX(147px);
+        width: 120px;
+      }
+      .moveLeft {
+        transform: translateX(-3px);
+      }
+    }
+
+    .searchBoxContainer {
+      display: flex;
+      justify-content: center;
+      margin-top: 60px;
+
+      .searchBox {
+        background: url('/assets/search.svg') no-repeat;
+        background-color: #ffffff;
+        background-position: 37px 46%;
+        border: none;
+        border-radius: 16px;
+        padding: 16px 0px 16px 70px;
+        font-size: pxToRem(20px);
+      }
+    }
+  }
+}
+
+@media (min-width: 800px) {
+  .notesContainer {
+    .mainNotesContainer {
+      padding-bottom: 48px;
+
+      .gridContainer {
+        padding: 0px 48px;
+      }
+
+      .filterContainer {
+        margin: 0px 48px;
+      }
+
+      .searchBoxContainer {
+        justify-content: flex-start;
+        width: 100%;
+        padding-left: 48px;
+      }
+    }
+  }
+}
+
+@media (min-width: 1200px) {
+  .notesContainer {
+    .noNotesContainer {
+      gap: 80px;
+
+      img {
+        width: 410px;
+        height: 222px;
+      }
+    }
+
+    .mainNotesContainer {
+      .gridContainer {
+        grid-template-columns: 1fr 1fr;
+      }
+      .searchBoxContainer {
+        .searchBox {
+          width: 400px;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 1700px) {
+  .notesContainer {
+    .mainNotesContainer {
+      .gridContainer {
+        gap: 50px;
+        grid-template-columns: 1fr 1fr 1fr;
+
+        .noteCardContainer {
+          padding: 70px;
+        }
+      }
+    }
+  }
+}

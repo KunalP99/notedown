@@ -2,26 +2,19 @@
 
 .sidebar {
   height: 100vh;
-  position: relative;
+  width: 100vw;
+  position: fixed;
   overflow: auto;
   border: none;
   background: white;
-  z-index: 0;
+  z-index: 3;
 
   .arrowBtn {
-    border: none;
-    background: none;
-    position: absolute;
+    @include arrowBtn(absolute);
     right: 5px;
     top: 18px;
-    margin: auto 0;
-    z-index: 100;
-    cursor: pointer;
-
-    img {
-      transform: scale(1.5);
-    }
   }
+
   .logo {
     @include flexCenter(row);
     gap: 4px;
@@ -75,26 +68,39 @@
     }
   }
 }
-.sidebar.hide {
-  animation: sidebarAnim 800ms ease-in-out forwards;
-  animation-name: sidebarAnim;
-  animation-duration: 300ms;
+.hide {
+  animation: sidebarAnimClose 300ms ease-in-out forwards;
 }
 
-@keyframes sidebarAnim {
+.open {
+  animation: sidebarAnimOpen 300ms ease-in-out forwards;
+}
+
+@keyframes sidebarAnimClose {
   0% {
     transform: translateX(0);
   }
 
   100% {
     transform: translateX(-100%);
-    visibility: hidden;
+  }
+}
+
+@keyframes sidebarAnimOpen {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(0);
   }
 }
 
 @media (min-width: 800px) {
   .sidebar {
-    width: 50vw;
+    position: sticky;
+    top: 0;
+    width: 45vw;
 
     .arrowBtn {
       top: 40px;
@@ -112,15 +118,15 @@
   }
 }
 
-@media (min-width: 1200px) {
-  .sidebar {
-    width: 30vw;
+@media (min-width: 1000px) {
+  .siderbar {
+    width: 40vw;
   }
 }
 
-@media (min-width: 1700px) {
+@media (min-width: 1200px) {
   .sidebar {
-    width: 25vw;
+    width: 30vw;
   }
 }
 

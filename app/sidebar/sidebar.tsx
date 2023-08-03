@@ -1,31 +1,35 @@
 "use client"
 
-import Image from "next/image"
-import Link from "next/link"
+import Image from 'next/image'
+import Link from 'next/link'
+import { useState, useEffect } from 'react'
 import styles from './sidebar.module.scss'
+import hideSidebar from '../utils/hideSidebar'
 
 const Sidebar = () => {
-  // // Toggle navbar and change hamburger icon to xIcon and vice versa
-  // const toggleNav = () => {
-  //   // Change hamburger menu to x icon and vice versa
-  //   if (navIcon !== HamburgerMenu) {
-  //     setNavIcon(HamburgerMenu);
-  //   } else {
-  //     setNavIcon(xIcon);
-  //   }
+  const [windowWidth, setWindowWidth] = useState<number>(0);
 
-  //   const navbarLinks = document.querySelector('.navbar-links');
-  //   navbarLinks.classList.toggle('active');
-  // };
+  // Get the size of the window when the window changes size
+  useEffect(() => {
+    const handleWindowResize = () => {
+      setWindowWidth(window.innerWidth)
+    };
 
-  const toggleSidebar = () => {
-    const sidebar = document.querySelector(`.${styles.sidebar}`)
-    sidebar?.classList.toggle(styles.hide)
-  }
+    window.addEventListener('resize', handleWindowResize)
+
+    return () => {
+      window.removeEventListener('resize', handleWindowResize)
+    }
+  }, [windowWidth])
+
+  // Get initial window width and set it 
+  useEffect(() => {
+    setWindowWidth(window.innerWidth)
+  }, [])
 
   return (
     <div className={styles.sidebar} role="navigation">
-      <button className={styles.arrowBtn} onClick={toggleSidebar}>
+      <button className={styles.arrowBtn} onClick={hideSidebar}>
         <Image
           className={styles.arrowImg}
           src={"/assets/sidebar/arrow-icon.svg"}
@@ -44,14 +48,22 @@ const Sidebar = () => {
         <h1>NoteDown</h1>
       </div>
       <div className={styles.btnContainer}>
-        <Link href='#' className={styles.newNoteBtn}>
+        <Link href='/notes/create' className={styles.newNoteBtn} onClick={() => {
+          if (windowWidth < 800) {
+            hideSidebar()
+          }
+        }}>
           <Image
             src={"/assets/plus.svg"}
             width={18}
             height={18}
             alt=""
           />New Note</Link>
-        <Link href="#">
+        <Link href="/notes" onClick={() => {
+          if (windowWidth < 800) {
+            hideSidebar()
+          }
+        }}>
           <Image
             src={"/assets/sidebar/notes-icon.svg"}
             width={32}
@@ -59,7 +71,11 @@ const Sidebar = () => {
             alt=""
           />
           Notes</Link>
-        <Link href="#">
+        <Link href="#" onClick={() => {
+          if (windowWidth < 800) {
+            hideSidebar()
+          }
+        }}>
           <Image
             src={"/assets/sidebar/help-icon.svg"}
             width={32}

@@ -2,4 +2,13 @@
 
 body {
   background: $background-colour;
+  color: $primary-grey-colour;
+
+  button {
+    cursor: pointer;
+  }
+
+  .container {
+    display: flex;
+  }
 }

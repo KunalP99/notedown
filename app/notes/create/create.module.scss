@@ -1,0 +1,7 @@
+@import '../../variables.module.scss';
+
+.createContainer {
+  h2 {
+    @include heading2;
+  }
+}

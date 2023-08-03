@@ -20,6 +20,69 @@ $purple-card-colour: #ddd3e1;
   font-size: pxToRem(32px);
 }
 
+@mixin heading2 {
+  font-weight: 400;
+  font-size: clamp(pxToRem(32px), 3vw, pxToRem(40px));
+  padding: 24px;
+
+  @media (min-width: 800px) {
+    padding: 48px;
+  }
+}
+
+@mixin heading3 {
+  font-weight: 500;
+  font-size: clamp(pxToRem(20px), 3vw, pxToRem(24px));
+}
+
+@mixin noteHeading {
+  font-weight: 700;
+  font-size: clamp(pxToRem(40px), 3vw, pxToRem(48px));
+}
+
+@mixin noteFont {
+  font-weight: 400;
+  font-family: 'Inter', sans-serif;
+  font-size: pxToRem(16px);
+}
+
+// Button
+@mixin arrowBtn($position) {
+  border: none;
+  background: none;
+  position: $position;
+  cursor: pointer;
+
+  img {
+    transform: scale(1.5);
+  }
+}
+
+@mixin primaryButton {
+  background: $primary-colour;
+  color: #ffffff;
+  border: none;
+  border-radius: 16px;
+  font-size: pxToRem(16px);
+}
+
+// Containers
+@mixin mainContainer {
+  width: 90vw;
+  @media (min-width: 800px) {
+    width: 55vw;
+  }
+  @media (min-width: 1000px) {
+    width: 60vw;
+  }
+  @media (min-width: 1200px) {
+    width: 70vw;
+  }
+  @media (min-width: 1700px) {
+    width: 80vw;
+  }
+}
+
 // Util
 @mixin flexCenter($direction) {
   display: flex;
