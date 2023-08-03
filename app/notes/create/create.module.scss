@@ -58,3 +58,23 @@
     }
   }
 }
+
+@media (min-width: 1200px) {
+  .createContainer {
+    .createForm {
+      textarea {
+        height: 450px;
+      }
+    }
+  }
+}
+
+@media (min-width: 1700px) {
+  .createContainer {
+    .createForm {
+      textarea {
+        height: 600px;
+      }
+    }
+  }
+}
