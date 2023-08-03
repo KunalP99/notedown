@@ -1,8 +1,9 @@
 import styles from '@/app/notes/notes.module.scss'
 import Image from 'next/image'
+import Link from 'next/link'
 import { format } from 'date-fns'
 import { Dispatch, SetStateAction, useState } from 'react'
-import { updateFavourite, deleteNote } from '@/app/utils/api/mongoApi'
+import { updateFavourite, deleteNote, getOneNote } from '@/app/utils/api/mongoApi'
 import { INote } from '@/app/notes/page'
 
 interface Props {
@@ -31,7 +32,10 @@ const NoteCard = ({ _id, title, tag, favourite, updatedAt, notes, setNotes }: Pr
   }
 
   return (
-    <div className={styles.noteCardContainer} style={tag ? { background: `${tag}` } : { background: "#ffffff" }}>
+    <div
+      className={styles.noteCardContainer}
+      style={tag ? { background: `${tag}` } : { background: "#ffffff" }}
+    >
       <h3>{title}</h3>
       {fav ?
         <button className={styles.star} onClick={handleFavourite}>
@@ -86,6 +90,11 @@ const NoteCard = ({ _id, title, tag, favourite, updatedAt, notes, setNotes }: Pr
           <div className={styles.dropdownBg} onClick={() => setShowDropdown(false)}></div>
         </div>
       }
+      <Link
+        className={styles.clickableArea}
+        href={`/notes/${_id}`}
+        onClick={() => getOneNote(_id)}
+      ></Link>
     </div>
   )
 }
