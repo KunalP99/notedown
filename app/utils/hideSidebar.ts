@@ -1,6 +1,6 @@
 import notesStyles from '../notes/notes.module.scss'
 import sidebarStyles from '../sidebar/sidebar.module.scss'
-import createStyles from '../notes/create/create.module.scss'
+import formStyles from '../components/forms/form.module.scss'
 import noteStyles from '../notes/[noteId]/note.module.scss'
 
 // prettier-ignore
@@ -8,7 +8,7 @@ const hideSidebar = () => {
   const sidebar = document.querySelector<HTMLElement>(`.${sidebarStyles.sidebar}`)
   const noNotesContainer = document.querySelector<HTMLElement>(`.${notesStyles.noNotesContainer}`)
   const mainNotesContainer = document.querySelector<HTMLElement>(`.${notesStyles.mainNotesContainer}`)
-  const createNoteForm = document.querySelector<HTMLElement>(`.${createStyles.createForm}`)
+  const form = document.querySelector<HTMLElement>(`.${formStyles.form}`)
   const noteContainer = document.querySelector<HTMLElement>(`.${noteStyles.noteContainer}`)
   const arrowOpenBtn = document.querySelector<HTMLElement>(`.${notesStyles.arrowOpenBtn}`)
 
@@ -22,7 +22,7 @@ const hideSidebar = () => {
 
       if (noNotesContainer) noNotesContainer.style.width = "100vw"
       if (mainNotesContainer) mainNotesContainer.style.width = "100vw"
-      if (createNoteForm) createNoteForm.style.width = "100vw"
+      if (form) form.style.width = '100vw'
       if (noteContainer) noteContainer.style.width = "100vw"
 
       if (arrowOpenBtn) arrowOpenBtn.style.display = "block"

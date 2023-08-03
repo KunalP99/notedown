@@ -70,3 +70,25 @@ export const updateFavourite = (_id: string, favourite: boolean) => {
     return res.json()
   })
 }
+
+export const updateNote = (
+  _id: string,
+  title: string,
+  note: string,
+  tag: string
+) => {
+  return fetch(`/api/note/${_id}`, {
+    method: 'PATCH',
+    body: JSON.stringify({
+      _id,
+      title,
+      note,
+      tag,
+    }),
+  }).then((res) => {
+    if (!res.ok) {
+      throw new Error(`${res.status}: Error creating note`)
+    }
+    return res.json()
+  })
+}

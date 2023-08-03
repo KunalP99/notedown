@@ -36,7 +36,6 @@
 
     .gridContainer {
       display: grid;
-      justify-content: center;
       gap: 16px;
       margin-top: 60px;
       padding: 0px 24px;
@@ -92,17 +91,14 @@
           padding: 6px;
           z-index: 2;
 
-          .btnContainer {
+          .linkContainer {
             display: flex;
             align-items: center;
             gap: 16px;
             z-index: 4;
-
-            button {
-              color: white;
-              border: none;
-              background: none;
-            }
+            color: white;
+            text-decoration: none;
+            font-size: pxToRem(14px);
           }
 
           .dropdownBg {

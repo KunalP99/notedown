@@ -1,0 +1,7 @@
+@import '../../../variables.module.scss';
+
+.editContainer {
+  h2 {
+    @include heading2;
+  }
+}

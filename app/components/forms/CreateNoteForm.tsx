@@ -1,6 +1,6 @@
 "use client"
 
-import styles from '@/app/notes/create/create.module.scss'
+import styles from './form.module.scss'
 import { useState, FormEvent } from 'react'
 
 interface Props {
@@ -27,7 +27,7 @@ const CreateNoteForm = ({ onSubmit }: Props) => {
   }
 
   return (
-    <form data-testid="form" className={styles.createForm} onSubmit={(e) => handleSubmit(e)}>
+    <form className={styles.form} onSubmit={(e) => handleSubmit(e)}>
       <div className={styles.topHalf}>
         <input
           type="text"
@@ -40,7 +40,6 @@ const CreateNoteForm = ({ onSubmit }: Props) => {
           name="tag"
           id="tag"
           value={tag}
-          defaultValue="#ffffff"
           onChange={(e) => setTag(e.target.value)} >
           <option value="#ffffff">None</option>
           <option value="#e2ebe0">Green</option>

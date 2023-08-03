@@ -69,24 +69,24 @@ const NoteCard = ({ _id, title, tag, favourite, updatedAt, notes, setNotes }: Pr
       }
       {showDropdown &&
         <div className={styles.dropdownContainer}>
-          <div className={styles.btnContainer}>
+          <Link className={styles.linkContainer} href={`/notes/edit/${_id}`}>
             <Image
               src={"/assets/edit.svg"}
               width={32}
               height={32}
-              alt="Edit note"
+              alt=""
             />
-            <button>Edit</button>
-          </div>
-          <div className={styles.btnContainer} onClick={handleDeleteNote}>
+            Edit
+          </Link>
+          <Link className={styles.linkContainer} href="#" onClick={handleDeleteNote}>
             <Image
               src={"/assets/delete.svg"}
               width={32}
               height={32}
-              alt="Delete note"
+              alt=""
             />
-            <button>Delete</button>
-          </div>
+            Delete
+          </Link>
           <div className={styles.dropdownBg} onClick={() => setShowDropdown(false)}></div>
         </div>
       }

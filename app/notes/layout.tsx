@@ -5,7 +5,7 @@ import Image from "next/image"
 import '../global.scss'
 import { useEffect, useState } from "react"
 import notesStyles from '../notes/notes.module.scss'
-import createStyles from './create/create.module.scss'
+import formStyles from '../components/forms/form.module.scss'
 import sidebarStyles from '../sidebar/sidebar.module.scss'
 import noteStyles from '../notes/[noteId]/note.module.scss'
 import openSidebar from "../utils/openSidebar"
@@ -43,7 +43,7 @@ const NotesLayout = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     const mainNotesContainer = document.querySelector<HTMLElement>(`.${notesStyles.mainNotesContainer}`)
     const noNotesContainer = document.querySelector<HTMLElement>(`.${notesStyles.noNotesContainer}`)
-    const createNoteForm = document.querySelector<HTMLElement>(`.${createStyles.createForm}`)
+    const form = document.querySelector<HTMLElement>(`.${formStyles.form}`)
     const sidebar = document.querySelector<HTMLElement>(`.${sidebarStyles.sidebar}`)
     const noteContainer = document.querySelector<HTMLElement>(`.${noteStyles.noteContainer}`)
 
@@ -63,11 +63,11 @@ const NotesLayout = ({ children }: { children: ReactNode }) => {
           if (windowWidth >= 1700) noNotesContainer.style.width = '80vw'
         }
 
-        if (createNoteForm) {
-          if (windowWidth >= 800 && windowWidth < 1000) createNoteForm.style.width = '55vw'
-          if (windowWidth >= 1000 && windowWidth < 1200) createNoteForm.style.width = '60vw'
-          if (windowWidth >= 1200 && windowWidth < 1700) createNoteForm.style.width = '70vw'
-          if (windowWidth >= 1700) createNoteForm.style.width = '80vw'
+        if (form) {
+          if (windowWidth >= 800 && windowWidth < 1000) form.style.width = '55vw'
+          if (windowWidth >= 1000 && windowWidth < 1200) form.style.width = '60vw'
+          if (windowWidth >= 1200 && windowWidth < 1700) form.style.width = '70vw'
+          if (windowWidth >= 1700) form.style.width = '80vw'
         }
 
         if (noteContainer) {
