@@ -48,7 +48,7 @@ describe('Create Note', () => {
 
     const submitBtn = screen.getByRole('button', { name: /create/i })
     await user.click(submitBtn)
-    expect(onSubmit).toHaveBeenCalledWith("Note Title", "", "")
+    expect(onSubmit).toHaveBeenCalledWith("Note Title", "", "#ffffff")
   })
 
   it('does not submit form if title is not filled', async () => {

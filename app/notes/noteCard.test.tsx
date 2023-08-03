@@ -71,10 +71,10 @@ describe('NoteCard', () => {
     const moreBtn = screen.getByRole('button', { name: /more options/i })
     await user.click(moreBtn)
 
-    const deleteBtn = screen.getByRole('button', { name: /delete/i })
+    const deleteBtn = screen.getByRole('link', { name: /delete/i })
     expect(deleteBtn).toBeInTheDocument()
 
-    const editBtn = screen.getByRole('button', { name: /edit/i })
+    const editBtn = screen.getByRole('link', { name: /edit/i })
     expect(editBtn).toBeInTheDocument()
   })
 })
