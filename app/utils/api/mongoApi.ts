@@ -45,6 +45,17 @@ export const deleteNote = (_id: string) => {
   })
 }
 
+export const getOneNote = (_id: string) => {
+  return fetch(`/api/note/${_id}`, {
+    method: 'GET',
+  }).then((res) => {
+    if (!res.ok) {
+      throw new Error(`${res.status}: Error finding note`)
+    }
+    return res.json()
+  })
+}
+
 export const updateFavourite = (_id: string, favourite: boolean) => {
   return fetch(`/api/note/${_id}`, {
     method: 'PATCH',

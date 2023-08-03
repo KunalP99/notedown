@@ -36,9 +36,10 @@
 
     .gridContainer {
       display: grid;
+      justify-content: center;
       gap: 16px;
       margin-top: 60px;
-      padding: 0px 48px;
+      padding: 0px 24px;
 
       .noteCardContainer {
         position: relative;
@@ -202,6 +203,10 @@
   .notesContainer {
     .mainNotesContainer {
       padding-bottom: 48px;
+
+      .gridContainer {
+        padding: 0px 48px;
+      }
 
       .filterContainer {
         margin: 0px 48px;

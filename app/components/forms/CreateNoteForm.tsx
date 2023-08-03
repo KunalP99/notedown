@@ -14,8 +14,12 @@ const CreateNoteForm = ({ onSubmit }: Props) => {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    onSubmit(title, note, tag)
-    console.log(tag)
+
+    if (tag === '') {
+      onSubmit(title, note, '#ffffff')
+    } else {
+      onSubmit(title, note, tag)
+    }
 
     setTitle('')
     setNote('')
@@ -36,6 +40,7 @@ const CreateNoteForm = ({ onSubmit }: Props) => {
           name="tag"
           id="tag"
           value={tag}
+          defaultValue="#ffffff"
           onChange={(e) => setTag(e.target.value)} >
           <option value="#ffffff">None</option>
           <option value="#e2ebe0">Green</option>

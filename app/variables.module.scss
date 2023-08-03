@@ -35,6 +35,11 @@ $purple-card-colour: #ddd3e1;
   font-size: clamp(pxToRem(20px), 3vw, pxToRem(24px));
 }
 
+@mixin noteHeading {
+  font-weight: 700;
+  font-size: clamp(pxToRem(40px), 3vw, pxToRem(48px));
+}
+
 @mixin noteFont {
   font-weight: 400;
   font-family: 'Inter', sans-serif;
@@ -76,10 +81,6 @@ $purple-card-colour: #ddd3e1;
   @media (min-width: 1700px) {
     width: 80vw;
   }
-}
-
-// Form
-@mixin inputBox {
 }
 
 // Util

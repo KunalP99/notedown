@@ -7,8 +7,9 @@ import { useEffect, useState } from "react"
 import notesStyles from '../notes/notes.module.scss'
 import createStyles from './create/create.module.scss'
 import sidebarStyles from '../sidebar/sidebar.module.scss'
+import noteStyles from '../notes/[noteId]/note.module.scss'
 import openSidebar from "../utils/openSidebar"
-import Sidebar from "../sidebar/sidebar"
+import Sidebar from '../sidebar/Sidebar'
 
 const NotesLayout = ({ children }: { children: ReactNode }) => {
   const [windowWidth, setWindowWidth] = useState<number>(0);
@@ -44,6 +45,7 @@ const NotesLayout = ({ children }: { children: ReactNode }) => {
     const noNotesContainer = document.querySelector<HTMLElement>(`.${notesStyles.noNotesContainer}`)
     const createNoteForm = document.querySelector<HTMLElement>(`.${createStyles.createForm}`)
     const sidebar = document.querySelector<HTMLElement>(`.${sidebarStyles.sidebar}`)
+    const noteContainer = document.querySelector<HTMLElement>(`.${noteStyles.noteContainer}`)
 
     if (sidebar) {
       if (sidebar.classList.contains(`${sidebarStyles.open}`)) {
@@ -66,6 +68,13 @@ const NotesLayout = ({ children }: { children: ReactNode }) => {
           if (windowWidth >= 1000 && windowWidth < 1200) createNoteForm.style.width = '60vw'
           if (windowWidth >= 1200 && windowWidth < 1700) createNoteForm.style.width = '70vw'
           if (windowWidth >= 1700) createNoteForm.style.width = '80vw'
+        }
+
+        if (noteContainer) {
+          if (windowWidth >= 800 && windowWidth < 1000) noteContainer.style.width = '55vw'
+          if (windowWidth >= 1000 && windowWidth < 1200) noteContainer.style.width = '60vw'
+          if (windowWidth >= 1200 && windowWidth < 1700) noteContainer.style.width = '70vw'
+          if (windowWidth >= 1700) noteContainer.style.width = '80vw'
         }
       }
     }
