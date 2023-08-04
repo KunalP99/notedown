@@ -3,6 +3,14 @@
 import { useState, useEffect } from 'react'
 import { getOneNote } from '@/app/utils/api/mongoApi'
 import { format } from 'date-fns'
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
+import {
+  materialDark,
+  materialLight,
+  oneLight,
+} from 'react-syntax-highlighter/dist/cjs/styles/prism'
 import { INote } from '../page'
 import styles from './note.module.scss'
 
@@ -27,7 +35,25 @@ const Note = ({ params }: { params: { noteId: string } }) => {
             </div>
             <div className={styles.underline} style={{ backgroundColor: note.tag }}></div>
           </div>
-          <p className={styles.text}>{note.note}</p>
+          <ReactMarkdown remarkPlugins={[remarkGfm]} className={styles.text} components={{
+            code({ inline, className, children, ...props }) {
+              const match = /language-(\w+)/.exec(className || '')
+              return !inline && match ? (
+                <SyntaxHighlighter
+                  language={match[1]}
+                  style={materialDark}
+                  {...props}
+                >
+                  {String(children).replace(/\n$/, '')}
+                </SyntaxHighlighter>
+              ) :
+                (
+                  <code className={styles.codeBlock} {...props}>
+                    {children}
+                  </code>
+                )
+            }
+          }}>{note.note}</ReactMarkdown>
         </>
       }
       {err && <p>There has been an error!</p>}
