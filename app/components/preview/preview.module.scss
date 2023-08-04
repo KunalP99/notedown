@@ -1,0 +1,32 @@
+@import '../../variables.module.scss';
+
+.previewContainer {
+  @include mainContainer;
+  @include noteContainer;
+  padding-bottom: 24px;
+
+  .previewMode {
+    color: $primary-colour;
+    font-weight: 700;
+    margin-bottom: 20px;
+  }
+
+  // H1 is defaulted to 24px, but has to be 32px
+  h1 {
+    font-size: pxToRem(32px);
+  }
+
+  button {
+    @include secondaryBtn;
+    margin-bottom: 20px;
+  }
+  button:hover {
+    background: #f5e9dd;
+  }
+}
+
+@media (min-width: 800px) {
+  .previewContainer {
+    padding-bottom: 48px;
+  }
+}

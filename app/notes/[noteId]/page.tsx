@@ -6,11 +6,7 @@ import { format } from 'date-fns'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
-import {
-  materialDark,
-  materialLight,
-  oneLight,
-} from 'react-syntax-highlighter/dist/cjs/styles/prism'
+import { materialDark } from 'react-syntax-highlighter/dist/cjs/styles/prism'
 import { INote } from '../page'
 import styles from './note.module.scss'
 
@@ -41,8 +37,8 @@ const Note = ({ params }: { params: { noteId: string } }) => {
               return !inline && match ? (
                 <SyntaxHighlighter
                   language={match[1]}
-                  style={materialDark}
                   {...props}
+                  style={materialDark}
                 >
                   {String(children).replace(/\n$/, '')}
                 </SyntaxHighlighter>

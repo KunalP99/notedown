@@ -2,95 +2,12 @@
 
 .noteContainer {
   @include mainContainer;
+  @include noteContainer;
   padding-bottom: 24px;
-
-  .headingContainer {
-    margin: 24px;
-
-    .titleContainer {
-      p {
-        margin-top: 8px;
-      }
-    }
-
-    h2 {
-      @include noteHeading;
-    }
-  }
-
-  .underline {
-    width: 60px;
-    height: 4px;
-    margin-top: 10px;
-  }
-
-  .text {
-    white-space: pre-line;
-    margin: 0px 24px;
-  }
 }
 
 @media (min-width: 800px) {
   .noteContainer {
     padding-bottom: 48px;
-
-    .headingContainer {
-      margin: 48px;
-
-      .titleContainer {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-
-        h2 {
-          width: 450px;
-        }
-
-        p {
-          display: block;
-          margin-top: 0px;
-        }
-      }
-    }
-
-    .text {
-      margin: 0px 48px;
-    }
-  }
-}
-
-@media (min-width: 1000px) {
-  .noteContainer {
-    .headingContainer {
-      .titleContainer {
-        h2 {
-          width: 600px;
-        }
-      }
-    }
-  }
-}
-
-@media (min-width: 1200px) {
-  .noteContainer {
-    .headingContainer {
-      .titleContainer {
-        h2 {
-          width: 800px;
-        }
-      }
-    }
-  }
-}
-
-@media (min-width: 1700px) {
-  .noteContainer {
-    .headingContainer {
-      .titleContainer {
-        h2 {
-          width: 1000px;
-        }
-      }
-    }
   }
 }

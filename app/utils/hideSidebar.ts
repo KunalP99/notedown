@@ -2,6 +2,7 @@ import notesStyles from '../notes/notes.module.scss'
 import sidebarStyles from '../sidebar/sidebar.module.scss'
 import formStyles from '../components/forms/form.module.scss'
 import noteStyles from '../notes/[noteId]/note.module.scss'
+import previewStyles from '../components/preview/preview.module.scss'
 
 // prettier-ignore
 const hideSidebar = () => {
@@ -10,6 +11,7 @@ const hideSidebar = () => {
   const mainNotesContainer = document.querySelector<HTMLElement>(`.${notesStyles.mainNotesContainer}`)
   const form = document.querySelector<HTMLElement>(`.${formStyles.form}`)
   const noteContainer = document.querySelector<HTMLElement>(`.${noteStyles.noteContainer}`)
+  const previewContainer = document.querySelector<HTMLElement>(`.${previewStyles.previewContainer}`)
   const arrowOpenBtn = document.querySelector<HTMLElement>(`.${notesStyles.arrowOpenBtn}`)
 
   if (sidebar) {
@@ -24,7 +26,7 @@ const hideSidebar = () => {
       if (mainNotesContainer) mainNotesContainer.style.width = "100vw"
       if (form) form.style.width = '100vw'
       if (noteContainer) noteContainer.style.width = "100vw"
-
+      if (previewContainer) previewContainer.style.width = '100vw'
       if (arrowOpenBtn) arrowOpenBtn.style.display = "block"
     }, 300)
   }

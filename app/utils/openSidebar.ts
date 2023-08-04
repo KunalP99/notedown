@@ -2,6 +2,7 @@ import sidebarStyles from '../sidebar/sidebar.module.scss'
 import notesStyles from '../notes/notes.module.scss'
 import formStyles from '../components/forms/form.module.scss'
 import noteStyles from '../notes/[noteId]/note.module.scss'
+import previewStyles from '../components/preview/preview.module.scss'
 
 // prettier-ignore
 const openSidebar = (windowWidth: number) => {
@@ -11,6 +12,8 @@ const openSidebar = (windowWidth: number) => {
   const form = document.querySelector<HTMLElement>( `.${formStyles.form}`)
   const noNotesContainer = document.querySelector<HTMLElement>(`.${notesStyles.noNotesContainer}`)
   const noteContainer = document.querySelector<HTMLElement>(`.${noteStyles.noteContainer}`)
+  const previewContainer = document.querySelector<HTMLElement>(`.${previewStyles.previewContainer}`)
+
 
   if (sidebar) {
     sidebar.classList.add(sidebarStyles.open)
@@ -48,6 +51,13 @@ const openSidebar = (windowWidth: number) => {
         if (windowWidth >= 1000 && windowWidth < 1200) noteContainer.style.width = '60vw'
         if (windowWidth >= 1200 && windowWidth < 1700) noteContainer.style.width = '70vw'
         if (windowWidth >= 1700) noteContainer.style.width = '80vw'
+      }
+
+      if (previewContainer) {
+        if (windowWidth >= 800 && windowWidth < 1000) previewContainer.style.width = '55vw'
+        if (windowWidth >= 1000 && windowWidth < 1200) previewContainer.style.width = '60vw'
+        if (windowWidth >= 1200 && windowWidth < 1700) previewContainer.style.width = '70vw'
+        if (windowWidth >= 1700) previewContainer.style.width = '80vw'
       }
 
       if (arrowOpenBtn) {
