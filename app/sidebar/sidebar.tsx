@@ -2,13 +2,15 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import styles from './sidebar.module.scss'
 import hideSidebar from '../utils/hideSidebar'
 import LoginButton from '../utils/google/LoginButton'
+import { UserContext } from '../components/context/UserContext'
 
 const Sidebar = () => {
   const [windowWidth, setWindowWidth] = useState<number>(0);
+  const { user, setUser } = useContext(UserContext);
 
   // Get the size of the window when the window changes size
   useEffect(() => {
@@ -27,6 +29,14 @@ const Sidebar = () => {
   useEffect(() => {
     setWindowWidth(window.innerWidth)
   }, [])
+
+  // // Get local storage item data when component mounts if there is data
+  // useEffect(() => {
+  //   const data = window.localStorage.getItem('NOTEDOWN_USER');
+  //   if (data !== null) {
+  //     setUser(JSON.parse(data));
+  //   }
+  // }, []);
 
   return (
     <div className={styles.sidebar} role="navigation">
@@ -85,7 +95,19 @@ const Sidebar = () => {
           />
           Help</Link>
         <div className={styles.userContainer}>
-          <LoginButton />
+          {user.sub === '' ?
+            <LoginButton />
+            :
+            <div>
+              <Image
+                src={user.picture}
+                width={32}
+                height={32}
+                alt="Profile image"
+              />
+              <p>{user.given_name}</p>
+            </div>
+          }
         </div>
       </div>
     </div>

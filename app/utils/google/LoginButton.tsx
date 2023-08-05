@@ -1,5 +1,7 @@
 import { GoogleLogin } from '@react-oauth/google';
+import { useContext } from 'react'
 import jwt_decode from 'jwt-decode';
+import { UserContext } from '@/app/components/context/UserContext';
 
 interface GoogleUserInfo {
   email: string,
@@ -10,12 +12,15 @@ interface GoogleUserInfo {
 }
 
 const LoginButton = () => {
+  const { setUser } = useContext(UserContext);
+
   return (
     <GoogleLogin
       useOneTap
       onSuccess={(res) => {
         const decoded: GoogleUserInfo = jwt_decode(res.credential || '');
-        console.log(decoded)
+        setUser(decoded)
+        window.localStorage.setItem('NOTEDOWN_USER', JSON.stringify(decoded));
       }}
       onError={() => console.log('Failed to Login')}
     />
