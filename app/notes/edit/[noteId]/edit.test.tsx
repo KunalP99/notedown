@@ -6,6 +6,8 @@ import { INote } from '../../page'
 
 describe('Edit Note', () => {
   const onSubmit = jest.fn()
+  const setPreview = jest.fn()
+
   const oneNote: INote =
   {
     _id: '1',
@@ -19,7 +21,11 @@ describe('Edit Note', () => {
   }
 
   beforeEach(() => {
-    render(<EditNote onSubmit={onSubmit} noteToEdit={oneNote} />)
+    render(<EditNote
+      onSubmit={onSubmit}
+      preview={false}
+      setPreview={setPreview}
+      noteToEdit={oneNote} />)
     onSubmit.mockClear()
   })
 
