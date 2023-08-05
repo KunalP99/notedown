@@ -32,8 +32,6 @@
   }
 
   .mainNotesContainer {
-    padding-bottom: 24px;
-
     .gridContainer {
       display: grid;
       gap: 16px;
@@ -198,8 +196,6 @@
 @media (min-width: 800px) {
   .notesContainer {
     .mainNotesContainer {
-      padding-bottom: 48px;
-
       .gridContainer {
         padding: 0px 48px;
       }

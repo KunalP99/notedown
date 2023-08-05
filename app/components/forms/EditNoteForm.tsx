@@ -1,31 +1,27 @@
-import { INote } from "@/app/notes/page"
-import { FormEvent, useEffect, useState } from "react"
+import { Dispatch, FormEvent, SetStateAction } from "react"
 import { format } from 'date-fns'
 import styles from './form.module.scss'
 
 interface Props {
+  newTitle: string,
+  setNewTitle: Dispatch<SetStateAction<string>>
+  newNote: string,
+  setNewNote: Dispatch<SetStateAction<string>>
+  newTag: string,
+  setNewTag: Dispatch<SetStateAction<string>>
+  createdAt: Date
   onSubmit: (title: string, note: string, tag: string) => void,
-  noteToEdit: INote
+  preview: boolean,
+  setPreview: Dispatch<SetStateAction<boolean>>
 }
 
-const EditNoteForm = ({ onSubmit, noteToEdit }: Props) => {
-  const [newTitle, setNewTitle] = useState<string>('')
-  const [newNote, setNewNote] = useState<string>('')
-  const [newTag, setNewTag] = useState<string>('')
-
-  useEffect(() => {
-    if (noteToEdit) {
-      setNewTitle(noteToEdit.title)
-      setNewNote(noteToEdit.note)
-      setNewTag(noteToEdit.tag)
-    }
-  }, [noteToEdit])
+const EditNoteForm = ({ newTitle, setNewTitle, newNote, setNewNote, newTag, setNewTag, createdAt, onSubmit, preview, setPreview }: Props) => {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     onSubmit(newTitle, newNote, newTag)
   }
-  //${format(new Date(updatedAt), 'PPP')}
+
   return (
     <form className={styles.form} onSubmit={(e) => handleSubmit(e)}>
       <div className={styles.topHalf}>
@@ -55,8 +51,17 @@ const EditNoteForm = ({ onSubmit, noteToEdit }: Props) => {
         value={newNote}
         onChange={((e) => setNewNote(e.target.value))}>
       </textarea>
-      <p className={styles.date}>{`Created on: ${format(new Date(noteToEdit.createdAt), 'PPP')}`}</p> 
-      <button>Edit</button>
+      <p className={styles.date}>{`Created on: ${format(new Date(createdAt), 'PPP')}`}</p>
+      <div className={styles.btnContainer}>
+        <button className={styles.primaryBtn}>Edit</button>
+        <button
+          type='button'
+          className={styles.previewBtn}
+          onClick={() => setPreview(!preview)}
+        >
+          Preview
+        </button>
+      </div>
     </form>
   )
 }

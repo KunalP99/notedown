@@ -1,22 +1,40 @@
-import { screen, render, within } from '@testing-library/react'
+import { screen, render } from '@testing-library/react'
 import '@testing-library/jest-dom'
 import user from '@testing-library/user-event'
 import CreateNoteForm from '@/app/components/forms/CreateNoteForm'
 
 describe('Create Note', () => {
+  const setTitle = jest.fn()
+  const setNote = jest.fn()
+  const setTag = jest.fn()
   const onSubmit = jest.fn()
+  const setPreview = jest.fn()
 
   beforeEach(() => {
-    render(<CreateNoteForm onSubmit={onSubmit} />)
     onSubmit.mockClear()
   })
 
   it('renders correctly', () => {
+    render(<CreateNoteForm
+      title='Note Title'
+      setTitle={setTitle}
+      note='# Hello, *world*!'
+      setNote={setNote}
+      tag='#e2ebe0'
+      setTag={setTag}
+      onSubmit={onSubmit}
+      preview={false}
+      setPreview={setPreview}
+    />)
+
     const titleInput = screen.getByPlaceholderText(/title/i)
     expect(titleInput).toBeInTheDocument()
 
     const noteInput = screen.getByPlaceholderText(/start writing your note here!/i)
     expect(noteInput).toBeInTheDocument()
+
+    const previewBtn = screen.getByRole('button', { name: /preview/i })
+    expect(previewBtn).toBeInTheDocument()
 
     const submitBtn = screen.getByRole('button', { name: /create/i })
     expect(submitBtn).toBeInTheDocument()
@@ -25,14 +43,17 @@ describe('Create Note', () => {
   it('submits form if all fields pass validation', async () => {
     user.setup()
 
-    const titleInput = screen.getByPlaceholderText(/title/i)
-    await user.type(titleInput, 'Note Title')
-
-    const noteInput = screen.getByPlaceholderText(/start writing your note here!/i)
-    await user.type(noteInput, '# Hello, *world*!')
-
-    const dropdown = screen.getByRole('combobox')
-    await user.selectOptions(dropdown, within(dropdown).getByRole('option', { name: /green/i }))
+    render(<CreateNoteForm
+      title='Note Title'
+      setTitle={setTitle}
+      note='# Hello, *world*!'
+      setNote={setNote}
+      tag='#e2ebe0'
+      setTag={setTag}
+      onSubmit={onSubmit}
+      preview={false}
+      setPreview={setPreview}
+    />)
 
     const submitBtn = screen.getByRole('button', { name: /create/i })
     await user.click(submitBtn)
@@ -43,8 +64,17 @@ describe('Create Note', () => {
   it('submits form if only title is filled out', async () => {
     user.setup()
 
-    const titleInput = screen.getByPlaceholderText(/title/i)
-    await user.type(titleInput, 'Note Title')
+    render(<CreateNoteForm
+      title='Note Title'
+      setTitle={setTitle}
+      note=''
+      setNote={setNote}
+      tag=''
+      setTag={setTag}
+      onSubmit={onSubmit}
+      preview={false}
+      setPreview={setPreview}
+    />)
 
     const submitBtn = screen.getByRole('button', { name: /create/i })
     await user.click(submitBtn)
@@ -54,11 +84,17 @@ describe('Create Note', () => {
   it('does not submit form if title is not filled', async () => {
     user.setup()
 
-    const noteInput = screen.getByPlaceholderText(/start writing your note here!/i)
-    await user.type(noteInput, '# Hello, *world*!')
-
-    const dropdown = screen.getByRole('combobox')
-    await user.selectOptions(dropdown, within(dropdown).getByRole('option', { name: /green/i }))
+    render(<CreateNoteForm
+      title=''
+      setTitle={setTitle}
+      note='# Hello, *world*!'
+      setNote={setNote}
+      tag='#e2ebe0'
+      setTag={setTag}
+      onSubmit={onSubmit}
+      preview={false}
+      setPreview={setPreview}
+    />)
 
     const submitBtn = screen.getByRole('button', { name: /create/i })
     await user.click(submitBtn)

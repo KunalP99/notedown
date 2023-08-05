@@ -8,8 +8,9 @@ import notesStyles from '../notes/notes.module.scss'
 import formStyles from '../components/forms/form.module.scss'
 import sidebarStyles from '../sidebar/sidebar.module.scss'
 import noteStyles from '../notes/[noteId]/note.module.scss'
+import previewStyles from '../components/preview/preview.module.scss'
 import openSidebar from "../utils/openSidebar"
-import Sidebar from '../sidebar/Sidebar'
+import Sidebar from "../sidebar/Sidebar"
 
 const NotesLayout = ({ children }: { children: ReactNode }) => {
   const [windowWidth, setWindowWidth] = useState<number>(0);
@@ -46,6 +47,7 @@ const NotesLayout = ({ children }: { children: ReactNode }) => {
     const form = document.querySelector<HTMLElement>(`.${formStyles.form}`)
     const sidebar = document.querySelector<HTMLElement>(`.${sidebarStyles.sidebar}`)
     const noteContainer = document.querySelector<HTMLElement>(`.${noteStyles.noteContainer}`)
+    const previewContainer = document.querySelector<HTMLElement>(`.${previewStyles.previewContainer}`)
 
     if (sidebar) {
       if (sidebar.classList.contains(`${sidebarStyles.open}`)) {
@@ -75,6 +77,13 @@ const NotesLayout = ({ children }: { children: ReactNode }) => {
           if (windowWidth >= 1000 && windowWidth < 1200) noteContainer.style.width = '60vw'
           if (windowWidth >= 1200 && windowWidth < 1700) noteContainer.style.width = '70vw'
           if (windowWidth >= 1700) noteContainer.style.width = '80vw'
+        }
+
+        if (previewContainer) {
+          if (windowWidth >= 800 && windowWidth < 1000) previewContainer.style.width = '55vw'
+          if (windowWidth >= 1000 && windowWidth < 1200) previewContainer.style.width = '60vw'
+          if (windowWidth >= 1200 && windowWidth < 1700) previewContainer.style.width = '70vw'
+          if (windowWidth >= 1700) previewContainer.style.width = '80vw'
         }
       }
     }

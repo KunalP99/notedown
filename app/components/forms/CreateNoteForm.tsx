@@ -1,17 +1,21 @@
 "use client"
 
 import styles from './form.module.scss'
-import { useState, FormEvent } from 'react'
+import { FormEvent, SetStateAction, Dispatch } from 'react'
 
 interface Props {
-  onSubmit: (title: string, note: string, tag: string) => void
+  title: string,
+  setTitle: Dispatch<SetStateAction<string>>,
+  note: string,
+  setNote: Dispatch<SetStateAction<string>>,
+  tag: string,
+  setTag: Dispatch<SetStateAction<string>>,
+  onSubmit: (title: string, note: string, tag: string) => void,
+  preview: boolean,
+  setPreview: Dispatch<SetStateAction<boolean>>
 }
 
-const CreateNoteForm = ({ onSubmit }: Props) => {
-  const [title, setTitle] = useState<string>('')
-  const [note, setNote] = useState<string>('')
-  const [tag, setTag] = useState<string>('')
-
+const CreateNoteForm = ({ title, setTitle, note, setNote, tag, setTag, onSubmit, preview, setPreview }: Props) => {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
@@ -55,7 +59,16 @@ const CreateNoteForm = ({ onSubmit }: Props) => {
         value={note}
         onChange={((e) => setNote(e.target.value))}>
       </textarea>
-      <button>Create</button>
+      <div className={styles.btnContainer}>
+        <button className={styles.primaryBtn}>Create</button>
+        <button
+          type='button'
+          className={styles.previewBtn}
+          onClick={() => setPreview(!preview)}
+        >
+          Preview
+        </button>
+      </div>
     </form>
   )
 }
