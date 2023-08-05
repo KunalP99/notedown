@@ -2,9 +2,14 @@ import { screen, render } from '@testing-library/react'
 import '@testing-library/jest-dom'
 import userEvent from '@testing-library/user-event'
 import Sidebar from './Sidebar'
+import { GoogleOAuthProvider } from '@react-oauth/google'
 
 beforeEach(() => {
-  render(<Sidebar />)
+  render(
+    <GoogleOAuthProvider clientId='clientId'>
+      <Sidebar />
+    </GoogleOAuthProvider>
+  )
 })
 
 describe('Sidebar', () => {
