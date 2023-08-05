@@ -9,6 +9,9 @@ import Preview from '@/app/components/preview/Preview'
 
 const EditNote = ({ params }: { params: { noteId: string } }) => {
   const [noteToEdit, setNoteToEdit] = useState<INote>()
+  const [newTitle, setNewTitle] = useState<string>('')
+  const [newNote, setNewNote] = useState<string>('')
+  const [newTag, setNewTag] = useState<string>('')
   const [preview, setPreview] = useState<boolean>(false)
   const [err, setErr] = useState<string>('')
 
@@ -17,6 +20,16 @@ const EditNote = ({ params }: { params: { noteId: string } }) => {
       .then(data => setNoteToEdit(data.note))
       .catch(err => setErr(err))
   }, [params.noteId])
+
+  // Get original values from the note
+  useEffect(() => {
+    if (noteToEdit) {
+      setNewTitle(noteToEdit.title)
+      setNewNote(noteToEdit.note)
+      setNewTag(noteToEdit.tag)
+      console.log(noteToEdit.title)
+    }
+  }, [noteToEdit])
 
   const onSubmit = (title: string, note: string, tag: string) => {
     updateNote(params.noteId, title, note, tag)
@@ -30,13 +43,19 @@ const EditNote = ({ params }: { params: { noteId: string } }) => {
           {preview ?
             <Preview
               setPreview={setPreview}
-              title={noteToEdit.title}
-              note={noteToEdit.note}
-              tag={noteToEdit.tag} />
+              title={newTitle}
+              note={newNote}
+              tag={newTag} />
             :
             <EditNoteForm
+              newTitle={newTitle}
+              setNewTitle={setNewTitle}
+              newNote={newNote}
+              setNewNote={setNewNote}
+              newTag={newTag}
+              setNewTag={setNewTag}
+              createdAt={noteToEdit.createdAt}
               onSubmit={onSubmit}
-              noteToEdit={noteToEdit}
               preview={preview}
               setPreview={setPreview}
             />
