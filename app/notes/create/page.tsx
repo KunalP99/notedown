@@ -1,19 +1,21 @@
 "use client"
 
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import styles from './create.module.scss'
 import { createNote } from '@/app/utils/api/mongoApi'
 import CreateNoteForm from '@/app/components/forms/CreateNoteForm'
 import Preview from '@/app/components/preview/Preview'
+import { UserContext } from '@/app/components/context/UserContext'
 
 const CreateNote = () => {
   const [title, setTitle] = useState<string>('')
   const [note, setNote] = useState<string>('')
   const [tag, setTag] = useState<string>('')
   const [preview, setPreview] = useState<boolean>(false)
+  const { user } = useContext(UserContext);
 
   const onSubmit = (title: string, note: string, tag: string) => {
-    createNote('1', title, note, tag, false)
+    createNote(user.sub, title, note, tag, false)
   }
 
   return (
@@ -39,7 +41,6 @@ const CreateNote = () => {
           setPreview={setPreview}
         />
       }
-
     </section>
   )
 }

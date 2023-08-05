@@ -30,13 +30,13 @@ const Sidebar = () => {
     setWindowWidth(window.innerWidth)
   }, [])
 
-  // // Get local storage item data when component mounts if there is data
-  // useEffect(() => {
-  //   const data = window.localStorage.getItem('NOTEDOWN_USER');
-  //   if (data !== null) {
-  //     setUser(JSON.parse(data));
-  //   }
-  // }, []);
+  // Get local storage item data when component mounts if there is data
+  useEffect(() => {
+    const data = window.localStorage.getItem('NOTEDOWN_USER');
+    if (data !== null) {
+      setUser(JSON.parse(data));
+    }
+  }, []);
 
   return (
     <div className={styles.sidebar} role="navigation">

@@ -1,9 +1,10 @@
 "use client"
 
 import styles from './notes.module.scss'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import { getNotes } from '../utils/api/mongoApi'
 import NotesContainer from '../components/notes/NotesContainer'
+import { UserContext } from '../components/context/UserContext'
 
 export interface INote {
   _id: string
@@ -20,13 +21,15 @@ const Notes = () => {
   const [notes, setNotes] = useState<INote[]>([])
   const [onFav, setOnFav] = useState<boolean>(false)
   const [err, setErr] = useState<string>('')
+  const { user } = useContext(UserContext);
 
   useEffect(() => {
-    getNotes()
-      .then(data => setNotes(data.notes))
-      .catch(err => setErr(err))
-  }, [onFav])
-
+    if (user.sub !== '') {
+      getNotes(user.sub)
+        .then(data => setNotes(data.notes))
+        .catch(err => setErr(err))
+    }
+  }, [onFav, user])
 
   return (
     <section className={styles.notesContainer}>
