@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import styles from './sidebar.module.scss'
 import hideSidebar from '../utils/hideSidebar'
+import LoginButton from '../utils/google/LoginButton'
 
 const Sidebar = () => {
   const [windowWidth, setWindowWidth] = useState<number>(0);
@@ -84,15 +85,7 @@ const Sidebar = () => {
           />
           Help</Link>
         <div className={styles.userContainer}>
-          <div>
-            <Image
-              src={"/assets/placeholders/profile-placeholder.png"}
-              width={32}
-              height={32}
-              alt="Profile image"
-            />
-            <p>Name</p>
-          </div>
+          <LoginButton />
         </div>
       </div>
     </div>
