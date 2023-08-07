@@ -2,9 +2,10 @@ import styles from '@/app/notes/notes.module.scss'
 import Image from 'next/image'
 import Link from 'next/link'
 import { format } from 'date-fns'
-import { Dispatch, SetStateAction, useState } from 'react'
+import { Dispatch, SetStateAction, useState, useContext } from 'react'
 import { updateFavourite, deleteNote, getOneNote } from '@/app/utils/api/mongoApi'
 import { INote } from '@/app/notes/page'
+import { UserContext } from '../context/UserContext'
 
 interface Props {
   _id: string,
@@ -19,6 +20,7 @@ interface Props {
 const NoteCard = ({ _id, title, tag, favourite, updatedAt, notes, setNotes }: Props) => {
   const [fav, setFav] = useState<boolean>(favourite)
   const [showDropdown, setShowDropdown] = useState<boolean>(false)
+  const { user } = useContext(UserContext);
 
   const handleFavourite = () => {
     setFav(!fav)
@@ -26,7 +28,7 @@ const NoteCard = ({ _id, title, tag, favourite, updatedAt, notes, setNotes }: Pr
   }
 
   const handleDeleteNote = () => {
-    deleteNote(_id)
+    deleteNote(_id, user.sub)
     setNotes(notes.filter(note => note._id !== _id))
     setShowDropdown(false)
   }

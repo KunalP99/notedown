@@ -1,7 +1,8 @@
 "use client"
 
 import styles from './form.module.scss'
-import { FormEvent, SetStateAction, Dispatch } from 'react'
+import { FormEvent, SetStateAction, Dispatch, useContext } from 'react'
+import { UserContext } from '../context/UserContext'
 
 interface Props {
   title: string,
@@ -16,6 +17,7 @@ interface Props {
 }
 
 const CreateNoteForm = ({ title, setTitle, note, setNote, tag, setTag, onSubmit, preview, setPreview }: Props) => {
+  const { user } = useContext(UserContext)
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
@@ -60,7 +62,9 @@ const CreateNoteForm = ({ title, setTitle, note, setNote, tag, setTag, onSubmit,
         onChange={((e) => setNote(e.target.value))}>
       </textarea>
       <div className={styles.btnContainer}>
-        <button className={styles.primaryBtn}>Create</button>
+        {user.sub !== '' &&
+          <button className={styles.primaryBtn}>Create</button>
+        }
         <button
           type='button'
           className={styles.previewBtn}

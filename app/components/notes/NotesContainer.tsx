@@ -120,7 +120,7 @@ const NotesContainer = ({ notes, setNotes, onFav, setOnFav, err }: Props) => {
           </div>
         </div>
       }
-      {err && <p>There is an error!</p>}
+      {err && <p>{`${err}`}</p>}
     </>
   )
 }

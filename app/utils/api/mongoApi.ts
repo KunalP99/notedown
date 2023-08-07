@@ -1,5 +1,5 @@
-export const getNotes = async () => {
-  return fetch('/api/note').then((res) => {
+export const getNotes = (user_id: string) => {
+  return fetch(`/api/note/user/${user_id}`).then((res) => {
     if (!res.ok) {
       throw new Error(`${res.status}: Error finding notes`)
     }
@@ -14,7 +14,7 @@ export const createNote = (
   tag: string,
   favourite: boolean
 ) => {
-  return fetch('/api/note', {
+  return fetch(`/api/note/user/${user_id}`, {
     method: 'POST',
     body: JSON.stringify({
       user_id,
@@ -31,8 +31,8 @@ export const createNote = (
   })
 }
 
-export const deleteNote = (_id: string) => {
-  return fetch('/api/note', {
+export const deleteNote = (_id: string, user_id: string) => {
+  return fetch(`/api/note/user/${user_id}`, {
     method: 'DELETE',
     body: JSON.stringify({
       _id,

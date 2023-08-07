@@ -3,7 +3,10 @@ import dbConnect from '@/mongoose/dbConnect'
 import mongoose from 'mongoose'
 import NoteModel from '@/mongoose/models/Note'
 
-export async function GET() {
+export async function GET(
+  req: NextRequest,
+  { params }: { params: { userId: string } }
+) {
   // Check if application is already connect to database, if not, then connect to the database
   if (!mongoose.connection.readyState) {
     try {
@@ -18,8 +21,10 @@ export async function GET() {
     }
   }
 
+  const user_id = params.userId
+
   try {
-    const notes = await NoteModel.find()
+    const notes = await NoteModel.find({ user_id: user_id })
     NextResponse.json({ notes }, { status: 200 })
     return new Response(JSON.stringify({ notes }))
   } catch (err) {
