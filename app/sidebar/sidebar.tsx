@@ -36,7 +36,7 @@ const Sidebar = () => {
     if (data !== null) {
       setUser(JSON.parse(data));
     }
-  }, []);
+  }, [setUser]);
 
   return (
     <div className={styles.sidebar} role="navigation">
