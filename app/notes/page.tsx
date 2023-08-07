@@ -23,11 +23,14 @@ const Notes = () => {
   const [err, setErr] = useState<string>('')
   const { user } = useContext(UserContext);
 
+  // Get notes if user is logged in else set notes array to empty
   useEffect(() => {
     if (user.sub !== '') {
       getNotes(user.sub)
         .then(data => setNotes(data.notes))
         .catch(err => setErr(err))
+    } else {
+      setNotes([])
     }
   }, [onFav, user])
 

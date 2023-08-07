@@ -38,6 +38,19 @@ const Sidebar = () => {
     }
   }, [setUser]);
 
+  const handleLogout = () => {
+    const noUser = {
+      email: '',
+      given_name: '',
+      name: '',
+      picture: '',
+      sub: ''
+    }
+
+    window.localStorage.setItem('NOTEDOWN_USER', JSON.stringify(noUser));
+    setUser(noUser)
+  }
+
   return (
     <div className={styles.sidebar} role="navigation">
       <button className={styles.arrowBtn} onClick={hideSidebar}>
@@ -109,6 +122,17 @@ const Sidebar = () => {
             </div>
           }
         </div>
+        {user.sub !== '' &&
+          <div className={styles.logoutContainer} onClick={handleLogout}>
+            <Image
+              src={"/assets/sidebar/logout.svg"}
+              width={32}
+              height={32}
+              alt="Logout"
+            />
+            <p>Logout</p>
+          </div>
+        }
       </div>
     </div>
   )
