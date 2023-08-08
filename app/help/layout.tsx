@@ -8,7 +8,7 @@ import helpStyles from '../help/help.module.scss'
 import notesStyles from '../notes/notes.module.scss'
 import sidebarStyles from '../sidebar/sidebar.module.scss'
 import openSidebar from "../utils/openSidebar"
-import Sidebar from "../sidebar/Sidebar"
+import Sidebar from '../sidebar/Sidebar'
 
 const HelpLayout = ({ children }: { children: ReactNode }) => {
   const [windowWidth, setWindowWidth] = useState<number>(0);
