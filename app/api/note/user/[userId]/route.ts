@@ -24,7 +24,9 @@ export async function GET(
   const user_id = params.userId
 
   try {
-    const notes = await NoteModel.find({ user_id: user_id })
+    const notes = await NoteModel.find({ user_id: user_id }).sort({
+      updatedAt: -1,
+    })
     NextResponse.json({ notes }, { status: 200 })
     return new Response(JSON.stringify({ notes }))
   } catch (err) {
