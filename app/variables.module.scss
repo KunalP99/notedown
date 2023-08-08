@@ -35,6 +35,11 @@ $purple-card-colour: #ddd3e1;
   font-size: clamp(pxToRem(20px), 3vw, pxToRem(24px));
 }
 
+@mixin heading4 {
+  font-weight: 500;
+  font-size: clamp(pxToRem(18px), 3vw, pxToRem(20px));
+}
+
 @mixin noteHeading {
   font-weight: 700;
   font-size: clamp(pxToRem(40px), 3vw, pxToRem(48px));

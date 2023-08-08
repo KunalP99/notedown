@@ -1,0 +1,61 @@
+@import '../variables.module.scss';
+
+.helpContainer {
+  @include mainContainer;
+  padding: 24px 0px 48px 24px;
+  max-width: 2600px;
+  margin: 0 auto;
+
+  .title {
+    font-weight: 400;
+    font-size: clamp(pxToRem(32px), 3vw, pxToRem(40px));
+    padding-bottom: 16px;
+  }
+
+  h1 {
+    @include heading1;
+  }
+
+  .subtitle {
+    @include heading3;
+    font-weight: 700;
+    margin-top: 48px;
+    margin-bottom: 16px;
+  }
+
+  h4 {
+    @include heading4;
+    font-weight: 600;
+    margin-top: 48px;
+    margin-bottom: 16px;
+  }
+
+  h5 {
+    margin-top: 24px;
+    margin-bottom: 16px;
+  }
+
+  .result {
+    background: white;
+    width: 90%;
+    padding: 16px;
+    border-radius: 16px;
+  }
+
+  .underline {
+    height: 2px;
+    background: rgb(219, 219, 219);
+    width: 100%;
+    margin-top: 48px;
+  }
+}
+
+@media (min-width: 800px) {
+  .helpContainer {
+    padding: 48px 90px 48px 48px;
+
+    .result {
+      width: 60%;
+    }
+  }
+}

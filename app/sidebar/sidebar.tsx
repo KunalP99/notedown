@@ -95,7 +95,7 @@ const Sidebar = () => {
             alt=""
           />
           Notes</Link>
-        <Link href="#" onClick={() => {
+        <Link href="/help" onClick={() => {
           if (windowWidth < 800) {
             hideSidebar()
           }

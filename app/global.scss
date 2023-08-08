@@ -11,4 +11,10 @@ body {
   .container {
     display: flex;
   }
+
+  code {
+    color: red;
+    background: white;
+    padding: 2px;
+  }
 }
