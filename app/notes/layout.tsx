@@ -10,7 +10,7 @@ import sidebarStyles from '../sidebar/sidebar.module.scss'
 import noteStyles from '../notes/[noteId]/note.module.scss'
 import previewStyles from '../components/preview/preview.module.scss'
 import openSidebar from "../utils/openSidebar"
-import Sidebar from "../sidebar/Sidebar"
+import Sidebar from "../sidebar/sidebar"
 
 const NotesLayout = ({ children }: { children: ReactNode }) => {
   const [windowWidth, setWindowWidth] = useState<number>(0);
