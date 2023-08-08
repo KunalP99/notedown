@@ -2,6 +2,7 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { useState, useEffect, useContext } from 'react'
 import styles from './sidebar.module.scss'
 import hideSidebar from '../utils/hideSidebar'
@@ -11,6 +12,7 @@ import { UserContext } from '../components/context/UserContext'
 const Sidebar = () => {
   const [windowWidth, setWindowWidth] = useState<number>(0);
   const { user, setUser } = useContext(UserContext);
+  const pathname = usePathname()
 
   // Get the size of the window when the window changes size
   useEffect(() => {
@@ -51,6 +53,19 @@ const Sidebar = () => {
     setUser(noUser)
   }
 
+  const navLinks = [
+    {
+      name: "Notes",
+      href: "/notes",
+      img: "/assets/sidebar/notes-icon.svg"
+    },
+    {
+      name: "Help",
+      href: "/help",
+      img: "/assets/sidebar/help-icon.svg"
+    }
+  ]
+
   return (
     <div className={styles.sidebar} role="navigation">
       <button className={styles.arrowBtn} onClick={hideSidebar}>
@@ -83,30 +98,29 @@ const Sidebar = () => {
             height={18}
             alt=""
           />New Note</Link>
-        <Link href="/notes" onClick={() => {
-          if (windowWidth < 800) {
-            hideSidebar()
-          }
-        }}>
-          <Image
-            src={"/assets/sidebar/notes-icon.svg"}
-            width={32}
-            height={32}
-            alt=""
-          />
-          Notes</Link>
-        <Link href="/help" onClick={() => {
-          if (windowWidth < 800) {
-            hideSidebar()
-          }
-        }}>
-          <Image
-            src={"/assets/sidebar/help-icon.svg"}
-            width={32}
-            height={32}
-            alt=""
-          />
-          Help</Link>
+        {navLinks.map(link => {
+          const isActive = pathname === link.href
+
+          return (
+            <Link
+              key={link.name}
+              href={link.href}
+              onClick={() => {
+                if (windowWidth < 800) {
+                  hideSidebar()
+                }
+              }}
+              className={isActive ? styles.active : ''}
+            >
+              <Image
+                src={link.img}
+                width={32}
+                height={32}
+                alt=""
+              />
+              {link.name}</Link>
+          )
+        })}
         <div className={styles.userContainer}>
           {user.sub === '' ?
             <LoginButton />
