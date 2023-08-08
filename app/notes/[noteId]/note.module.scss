@@ -4,6 +4,8 @@
   @include mainContainer;
   @include noteContainer;
   padding-bottom: 24px;
+  max-width: 2600px;
+  margin: 0 auto;
 
   ul,
   ol {

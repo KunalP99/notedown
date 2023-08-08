@@ -15,6 +15,7 @@
 
 .notesContainer {
   overflow: hidden;
+
   h2 {
     @include heading2;
   }
@@ -22,6 +23,8 @@
   .mainNotesContainer,
   .noNotesContainer {
     @include mainContainer;
+    max-width: 2600px;
+    margin: 0 auto;
   }
 
   .noNotesContainer {
