@@ -19,11 +19,17 @@ interface Props {
 
 const EditNoteForm = ({ newTitle, setNewTitle, newNote, setNewNote, newTag, setNewTag, createdAt, onSubmit, preview, setPreview }: Props) => {
   const notify = () => toast.success("Note successfully changed!");
+  const notifyErr = () => toast.error("Note could not be created!");
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    onSubmit(newTitle, newNote, newTag)
-    notify()
+
+    try {
+      onSubmit(newTitle, newNote, newTag)
+      notify()
+    } catch (err) {
+      notifyErr()
+    }
   }
 
   return (

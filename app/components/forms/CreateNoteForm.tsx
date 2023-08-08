@@ -20,22 +20,27 @@ interface Props {
 
 const CreateNoteForm = ({ title, setTitle, note, setNote, tag, setTag, onSubmit, preview, setPreview }: Props) => {
   const notify = () => toast.success("Note successfully created!");
+  const notifyErr = () => toast.error("Note could not be created!");
 
   const { user } = useContext(UserContext)
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-    if (tag === '') {
-      onSubmit(title, note, '#ffffff')
-    } else {
-      onSubmit(title, note, tag)
+    try {
+      if (tag === '') {
+        onSubmit(title, note, '#ffffff')
+      } else {
+        onSubmit(title, note, tag)
+      }
+
+      notify()
+
+      setTitle('')
+      setNote('')
+      setTag('')
+    } catch (err) {
+      notifyErr()
     }
-
-    notify()
-
-    setTitle('')
-    setNote('')
-    setTag('')
   }
 
   return (
