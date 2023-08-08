@@ -3,6 +3,8 @@
 import styles from './form.module.scss'
 import { FormEvent, SetStateAction, Dispatch, useContext } from 'react'
 import { UserContext } from '../context/UserContext'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 interface Props {
   title: string,
@@ -17,19 +19,28 @@ interface Props {
 }
 
 const CreateNoteForm = ({ title, setTitle, note, setNote, tag, setTag, onSubmit, preview, setPreview }: Props) => {
+  const notify = () => toast.success("Note successfully created!");
+  const notifyErr = () => toast.error("Note could not be created!");
+
   const { user } = useContext(UserContext)
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-    if (tag === '') {
-      onSubmit(title, note, '#ffffff')
-    } else {
-      onSubmit(title, note, tag)
-    }
+    try {
+      if (tag === '') {
+        onSubmit(title, note, '#ffffff')
+      } else {
+        onSubmit(title, note, tag)
+      }
 
-    setTitle('')
-    setNote('')
-    setTag('')
+      notify()
+
+      setTitle('')
+      setNote('')
+      setTag('')
+    } catch (err) {
+      notifyErr()
+    }
   }
 
   return (
@@ -73,6 +84,16 @@ const CreateNoteForm = ({ title, setTitle, note, setNote, tag, setTag, onSubmit,
           Preview
         </button>
       </div>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        pauseOnFocusLoss
+        pauseOnHover
+        theme="light"
+      />
     </form>
   )
 }

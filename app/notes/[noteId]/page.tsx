@@ -31,6 +31,8 @@ const Note = ({ params }: { params: { noteId: string } }) => {
             </div>
             <div className={styles.underline} style={{ backgroundColor: note.tag }}></div>
           </div>
+          {err && <p className={styles.error}>{`${err}`}</p>}
+
           <ReactMarkdown remarkPlugins={[remarkGfm]} className={styles.text} components={{
             code({ inline, className, children, ...props }) {
               const match = /language-(\w+)/.exec(className || '')
@@ -52,7 +54,6 @@ const Note = ({ params }: { params: { noteId: string } }) => {
           }}>{note.note}</ReactMarkdown>
         </>
       }
-      {err && <p>There has been an error!</p>}
     </div>
   )
 }

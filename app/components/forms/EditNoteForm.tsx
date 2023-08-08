@@ -1,6 +1,8 @@
 import { Dispatch, FormEvent, SetStateAction } from "react"
 import { format } from 'date-fns'
 import styles from './form.module.scss'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 interface Props {
   newTitle: string,
@@ -16,10 +18,18 @@ interface Props {
 }
 
 const EditNoteForm = ({ newTitle, setNewTitle, newNote, setNewNote, newTag, setNewTag, createdAt, onSubmit, preview, setPreview }: Props) => {
+  const notify = () => toast.success("Note successfully changed!");
+  const notifyErr = () => toast.error("Note could not be created!");
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    onSubmit(newTitle, newNote, newTag)
+
+    try {
+      onSubmit(newTitle, newNote, newTag)
+      notify()
+    } catch (err) {
+      notifyErr()
+    }
   }
 
   return (
@@ -62,6 +72,16 @@ const EditNoteForm = ({ newTitle, setNewTitle, newNote, setNewNote, newTag, setN
           Preview
         </button>
       </div>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        pauseOnFocusLoss
+        pauseOnHover
+        theme="light"
+      />
     </form>
   )
 }

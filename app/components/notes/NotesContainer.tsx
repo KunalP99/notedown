@@ -81,6 +81,8 @@ const NotesContainer = ({ notes, setNotes, onFav, setOnFav, err }: Props) => {
               onChange={(e) => setSearchQuery(e.target.value)}
             />
           </div>
+          {err && <p className={styles.error}>{`${err}`}</p>}
+
           <div className={styles.gridContainer}>
             {onFav ?
               <>
@@ -120,7 +122,6 @@ const NotesContainer = ({ notes, setNotes, onFav, setOnFav, err }: Props) => {
           </div>
         </div>
       }
-      {err && <p>{`${err}`}</p>}
     </>
   )
 }
