@@ -194,6 +194,11 @@
       }
     }
   }
+
+  .error {
+    @include error;
+    padding-left: 24px;
+  }
 }
 
 @media (min-width: 800px) {
@@ -212,6 +217,10 @@
         width: 100%;
         padding-left: 48px;
       }
+    }
+
+    .error {
+      padding-left: 48px;
     }
   }
 }

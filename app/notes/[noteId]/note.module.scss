@@ -12,6 +12,11 @@
     margin-top: -1em;
     margin-bottom: -1em;
   }
+
+  .error {
+    @include error;
+    margin-bottom: 60px;
+  }
 }
 
 @media (min-width: 800px) {

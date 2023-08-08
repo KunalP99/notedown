@@ -51,6 +51,13 @@ $purple-card-colour: #ddd3e1;
   font-size: pxToRem(16px);
 }
 
+@mixin error {
+  font-weight: 600;
+  color: red;
+  font-size: clamp(pxToRem(18px), 3vw, pxToRem(20px));
+  margin-top: 60px;
+}
+
 // Button
 @mixin arrowBtn($position) {
   border: none;
