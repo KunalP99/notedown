@@ -128,8 +128,8 @@ const Sidebar = () => {
             <div>
               <Image
                 src={user.picture}
-                width={32}
-                height={32}
+                width={24}
+                height={24}
                 alt="Profile image"
               />
               <p>{user.given_name}</p>
