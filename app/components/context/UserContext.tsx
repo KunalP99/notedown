@@ -1,3 +1,5 @@
+"use client"
+
 import { createContext, useState, Dispatch, SetStateAction, ReactNode } from 'react';
 
 /* User Context to allow access to user data around entire application */

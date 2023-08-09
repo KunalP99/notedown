@@ -4,7 +4,6 @@ import { ReactNode } from "react"
 import Image from "next/image"
 import '../global.scss'
 import { useEffect, useState } from "react"
-import { GoogleOAuthProvider } from "@react-oauth/google"
 import helpStyles from '../help/help.module.scss'
 import notesStyles from '../notes/notes.module.scss'
 import sidebarStyles from '../sidebar/sidebar.module.scss'
@@ -58,24 +57,19 @@ const HelpLayout = ({ children }: { children: ReactNode }) => {
   }, [windowWidth])
 
   return (
-    <>
-      <GoogleOAuthProvider clientId={`${process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}`}>
-        <div className="container">
-          <button className={notesStyles.arrowOpenBtn} onClick={() => openSidebar(windowWidth)}>
-            <Image
-              className={notesStyles.arrowImg}
-              src={"/assets/sidebar/arrow-icon.svg"}
-              width={36}
-              height={48}
-              alt="Toggle sidebar"
-            />
-          </button>
-          <Sidebar />
-          {children}
-        </div>
-      </GoogleOAuthProvider>
-    </>
-
+    <div className="container">
+      <button className={notesStyles.arrowOpenBtn} onClick={() => openSidebar(windowWidth)}>
+        <Image
+          className={notesStyles.arrowImg}
+          src={"/assets/sidebar/arrow-icon.svg"}
+          width={36}
+          height={48}
+          alt="Toggle sidebar"
+        />
+      </button>
+      <Sidebar />
+      {children}
+    </div>
   )
 }
 

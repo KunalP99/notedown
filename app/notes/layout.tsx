@@ -4,8 +4,6 @@ import { ReactNode } from "react"
 import Image from "next/image"
 import '../global.scss'
 import { useEffect, useState } from "react"
-import UserProvider from "../components/context/UserContext"
-import { GoogleOAuthProvider } from "@react-oauth/google"
 import notesStyles from '../notes/notes.module.scss'
 import formStyles from '../components/forms/form.module.scss'
 import sidebarStyles from '../sidebar/sidebar.module.scss'
@@ -93,28 +91,19 @@ const NotesLayout = ({ children }: { children: ReactNode }) => {
   }, [windowWidth])
 
   return (
-    <>
-      <GoogleOAuthProvider clientId={`${process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}`}>
-        <UserProvider>
-          <div className="container">
-            <button className={notesStyles.arrowOpenBtn} onClick={() => openSidebar(windowWidth)}>
-              <Image
-                className={notesStyles.arrowImg}
-                src={"/assets/sidebar/arrow-icon.svg"}
-                width={36}
-                height={48}
-                alt="Toggle sidebar"
-              />
-            </button>
-            <Sidebar />
-            {children}
-          </div>
-        </UserProvider>
-      </GoogleOAuthProvider>
-
-
-    </>
-
+    <div className="container">
+      <button className={notesStyles.arrowOpenBtn} onClick={() => openSidebar(windowWidth)}>
+        <Image
+          className={notesStyles.arrowImg}
+          src={"/assets/sidebar/arrow-icon.svg"}
+          width={36}
+          height={48}
+          alt="Toggle sidebar"
+        />
+      </button>
+      <Sidebar />
+      {children}
+    </div>
   )
 }
 
