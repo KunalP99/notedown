@@ -8,8 +8,6 @@
 
 NoteDown is a note-taking CRUD application that formats your notes using markdown. 
 
-Check out the [video demo](https://www.youtube.com/watch?v=tPU317boO-g)!
-
 ## Features 
 - Create notes, choosing a title, text, and tag colours
 - Note is rendered with react-markdown
